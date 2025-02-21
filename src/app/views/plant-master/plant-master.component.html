@@ -1,0 +1,56 @@
+<div class="container d-flex justify-content-center align-items-center mt-5" >
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%; border-radius: 10px;">
+        <div class="text-center mb-3 form-control rounded-left " style=" background-color: #f0f8ff;">
+            <h4 class="mt-2">Plant Master</h4></div>
+        <div class="text-center mb-3">
+           
+   
+            <p class="text-center fs-3" [ngClass]="isAlready ? 'text-success pb-1' : 'text-danger pb-1'">
+                {{ displayedMsg }}
+              </p>
+              
+    <form [formGroup]="plantForm" (ngSubmit)="plantFormSubmit()">  
+       
+        <div class="mb-3">
+            <label for="plantid" class="form-label">Plant Id</label>
+            <input type="text"  class="form-control rounded-pill" id="plantid" formControlName="plantid">
+            <div *ngIf="PlantId?.invalid && PlantId?.touched" class="text-danger">
+                Plant ID is required
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="plantname" class="form-label">Plant Name</label>
+                <input type="text" class="form-control rounded-pill" id="plantname" formControlName="plantname">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="factoryid" class="form-label">Factory Id</label>
+                <input type="text" class="form-control rounded-pill" id="factoryid" formControlName="factoryid">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="plantnumber" class="form-label">Plant Number</label>
+                <input type="text" class="form-control rounded-pill" id="plantnumber" formControlName="plantnumber">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6 offset-3">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark rounded-pill" [disabled]="plantForm.invalid">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>  
+</div>
+
+

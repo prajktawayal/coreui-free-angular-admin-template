@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
   AvatarModule,
-  BadgeModule,
+  // BadgeModule,
   BreadcrumbModule,
   ButtonGroupModule,
   DropdownModule,
@@ -24,7 +24,7 @@ describe('DefaultHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [GridModule, HeaderModule, IconModule, NavModule, BadgeModule, AvatarModule, DropdownModule, BreadcrumbModule, RouterTestingModule, SidebarModule, ProgressModule, ButtonGroupModule, ReactiveFormsModule, DefaultHeaderComponent],
+    imports: [GridModule, HeaderModule, IconModule, NavModule,  AvatarModule, DropdownModule, BreadcrumbModule, RouterTestingModule, SidebarModule, ProgressModule, ButtonGroupModule, ReactiveFormsModule, DefaultHeaderComponent],
     providers: [IconSetService]
 })
       .compileComponents();

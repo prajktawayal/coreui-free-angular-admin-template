@@ -1,0 +1,12 @@
+.modal-backdrop {
+    z-index: 1040 !important;
+  }
+  
+  .c-modal {
+    z-index: 1050 !important;
+    position: fixed !important;
+    top: 10% !important;
+    left: 50% !important;
+    transform: translate(-50%, 0) !important;
+  }
+  

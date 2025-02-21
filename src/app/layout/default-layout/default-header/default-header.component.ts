@@ -1,15 +1,15 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input ,EventEmitter, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
   AvatarComponent,
-  BadgeComponent,
+  // BadgeComponent,
   BreadcrumbRouterComponent,
   ColorModeService,
   ContainerComponent,
   DropdownComponent,
-  DropdownDividerDirective,
+  // DropdownDividerDirective,
   DropdownHeaderDirective,
   DropdownItemDirective,
   DropdownMenuDirective,
@@ -19,7 +19,15 @@ import {
   HeaderTogglerDirective,
   NavItemComponent,
   NavLinkDirective,
-  SidebarToggleDirective
+  SidebarToggleDirective,
+  ButtonCloseDirective,
+  ButtonDirective,
+  ModalBodyComponent,
+  ModalComponent,
+  ModalFooterComponent,
+  ModalHeaderComponent,
+  ModalTitleDirective,
+  ThemeDirective
 } from '@coreui/angular';
 
 import { IconDirective } from '@coreui/icons-angular';
@@ -27,10 +35,29 @@ import { IconDirective } from '@coreui/icons-angular';
 @Component({
     selector: 'app-default-header',
     templateUrl: './default-header.component.html',
-  imports: [ContainerComponent, HeaderTogglerDirective, SidebarToggleDirective, IconDirective, HeaderNavComponent, NavItemComponent, NavLinkDirective, RouterLink, RouterLinkActive, NgTemplateOutlet, BreadcrumbRouterComponent, DropdownComponent, DropdownToggleDirective, AvatarComponent, DropdownMenuDirective, DropdownHeaderDirective, DropdownItemDirective, BadgeComponent, DropdownDividerDirective]
+  imports: [ContainerComponent, HeaderTogglerDirective, SidebarToggleDirective, IconDirective, HeaderNavComponent, NavItemComponent, NavLinkDirective, RouterLink, RouterLinkActive, NgTemplateOutlet, BreadcrumbRouterComponent, DropdownComponent, DropdownToggleDirective, AvatarComponent, DropdownMenuDirective, DropdownHeaderDirective, DropdownItemDirective,ButtonDirective, ModalComponent, ModalHeaderComponent, ModalTitleDirective, ThemeDirective, ButtonCloseDirective, ModalBodyComponent, ModalFooterComponent ]
 })
 export class DefaultHeaderComponent extends HeaderComponent {
+  @Output() openModalEvent = new EventEmitter<void>();
 
+  openModal() {
+    this.openModalEvent.emit();  // Trigger modal opening in parent component
+  }
+
+  public visible = false;
+
+  // toggleLiveDemo() {
+  //   this.visible = !this.visible;
+  // }
+  toggleLiveDemo() {
+    console.log("Modal Toggled, Visible:", this.visible);
+    this.visible = !this.visible;
+  }
+
+  handleLiveDemoChange(event: any) {
+    this.visible = event;
+  }
+  
   readonly #colorModeService = inject(ColorModeService);
   readonly colorMode = this.#colorModeService.colorMode;
 

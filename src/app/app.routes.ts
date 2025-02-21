@@ -4,7 +4,7 @@ import { DefaultLayoutComponent } from './layout';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'master',
     pathMatch: 'full'
   },
   {
@@ -14,6 +14,10 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
+      {
+        path: 'master',
+        loadChildren: () => import('./views/master/routes').then((m) => m.routes)
+      },
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
@@ -53,7 +57,11 @@ export const routes: Routes = [
       {
         path: 'pages',
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
-      }
+      },
+      {
+        path: 'plant-master',
+        loadChildren:()=>import('./views/plant-master/routes').then((m) => m.routes)
+      },
     ]
   },
   {

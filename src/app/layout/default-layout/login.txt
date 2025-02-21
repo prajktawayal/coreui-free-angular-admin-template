@@ -4,7 +4,9 @@
   <c-sidebar-header style="text-align: center;">
     <c-sidebar-brand [routerLink]="[]">
       <h1 class="card-title mb-0">MintFDI</h1>
-     </c-sidebar-brand>
+      <!-- <svg [class]="{icon: false}" cIcon class="sidebar-brand-full" height="32" name="logo" title="CoreUI Logo"></svg>
+      <svg cIcon class="sidebar-brand-narrow" height="32" name="signet" title="CoreUI Logo"></svg> -->
+    </c-sidebar-brand>
   </c-sidebar-header>
 
   <ng-scrollbar pointerEventsMethod="scrollbar" visibility="hover">
@@ -41,7 +43,16 @@
                 <span cInputGroupText>
                   <svg cIcon name="cilUser"></svg>
                 </span>
-             <input formControlName="username" type="text" cFormControl placeholder="Username" required />
+                <!-- <input autoComplete="username"type="text" name="username" cFormControl placeholder="Username" required  /> -->
+                <!-- <input 
+                [(ngModel)]="username" 
+                name="username" 
+                autoComplete="username" 
+                type="text" 
+                cFormControl 
+                placeholder="Username" 
+                required /> -->
+                <input formControlName="username" type="text" cFormControl placeholder="Username" required />
               </c-input-group>
               <!-- Username Validation Messages -->
               <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger">
@@ -53,9 +64,22 @@
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                 <input formControlName="password" type="password" cFormControl placeholder="Password" required />
+                <!-- <input
+                          autoComplete="current-password"
+                          type="password"  name="password" cFormControl placeholder="Password" required
+                        /> -->
+                <!-- <input 
+                        [(ngModel)]="password" 
+                        name="password" 
+                        autoComplete="current-password" 
+                        type="password"  
+                        cFormControl 
+                        placeholder="Password" 
+                        required /> -->
+                <input formControlName="password" type="password" cFormControl placeholder="Password" required />
               </c-input-group>
               <!-- Password Validation Messages -->
+              <!-- <div *ngIf="submitted && f['password'].errors" class="text-danger"> -->
                 <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger">
                 <small *ngIf="f['password'].errors?.['required']">Password is required</small>
                 <small *ngIf="f['password'].errors?.['minlength']">At least 6 characters required</small>
@@ -92,14 +116,21 @@
               <div class="clearfix">
                 <img cImg align="center" height="300" src="./assets/images/login.png" width="400" />
               </div>
-             </div>
+              <!-- <c-avatar src="./assets/images/login.png" textColor="primary" alt="User avatar" />-->
+              <!-- <a cButton  [active]="true" class="mt-3" color="primary" [routerLink]="'/register'" role="button">Register Now!</a> -->
+              <!-- <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
+                        Register Now!
+                      </button> -->
+            </div>
           </c-card-body>
         </c-card>
       </c-card-group>
 
     </c-modal-body>
     <c-modal-footer>
-     </c-modal-footer>
+      <!-- <button (click)="toggleLiveDemo()" cButton color="secondary">Close</button>
+      <button cButton color="primary">Save changes</button> -->
+    </c-modal-footer>
   </c-modal>
   <!--app-body-->
   <div class="body flex-grow-1">
