@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Register</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input id="username" type="text" class="form-control" formControlName="username">
+        <!-- Username Validation Messages -->
+        <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger">
+          <small *ngIf="f['username'].errors?.['required']">Username is required</small>
+          <small *ngIf="f['username'].errors?.['minlength']">At least 3 characters required</small>
+          <small *ngIf="f['username'].errors?.['pattern']">Only alphanumeric characters allowed</small>
+        </div>
+      </div>
+
+      <!-- User Role Field -->
+      <div class="mb-3">
+        <label for="userRole" class="form-label">User Role</label>
+        <input id="userRole" type="text" class="form-control" formControlName="userRole">
+        <div *ngIf="f['userRole'].invalid && (f['userRole'].dirty || submitted)" class="text-danger">
+          <small *ngIf="f['userRole'].errors?.['required']">User role is required</small>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" class="form-control" formControlName="email">
+        <div *ngIf="f['email'].invalid && (f['email'].dirty || submitted)" class="text-danger">
+          <small *ngIf="f['email'].errors?.['required']">Email is required</small>
+          <small *ngIf="f['email'].errors?.['email']">Please enter a valid email address</small>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" type="password" class="form-control" formControlName="password">
+        <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger">
+          <small *ngIf="f['password'].errors?.['required']">Password is required</small>
+          <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters long</small>
+        </div>
+      </div>
+
+      <!-- Repeat Password Field -->
+      <div class="mb-3">
+        <label for="repeatPassword" class="form-label">Repeat Password</label>
+        <input id="repeatPassword" type="password" class="form-control" formControlName="repeatPassword">
+        <div *ngIf="f['repeatPassword'].invalid && (f['repeatPassword'].dirty || submitted)" class="text-danger">
+          <small *ngIf="f['repeatPassword'].errors?.['required']">Repeat password is required</small>
+          <small *ngIf="f['repeatPassword'].errors?.['passwordMismatch']">Passwords do not match</small>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  </div>
+</div>

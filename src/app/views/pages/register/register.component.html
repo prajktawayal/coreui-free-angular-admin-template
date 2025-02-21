@@ -4,33 +4,79 @@
       <c-col lg="7" md="9" xl="6">
         <c-card class="mx-4">
           <c-card-body class="p-4">
-            <form cForm>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
               <h1>Register</h1>
               <p class="text-body-secondary">Create your account</p>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilUser"></svg>
+
+              <!-- Username Field -->
+              <c-input-group class="mb-3 w-100 d-flex align-items-center" style="height: 45px;">
+                <span cInputGroupText class="flex-shrink-0 d-flex align-items-center justify-content-center" style="height: 100%; width: 45px;">
+                  <svg cIcon name="cilUser" style="font-size: 1.2rem;"></svg>
                 </span>
-                <input autoComplete="name" cFormControl placeholder="Username" />
+                <input id="username" class="form-control flex-grow-1" style="height: 100%; font-size: 1rem;" placeholder="Username" formControlName="username">
               </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>&#64;</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
-              </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
+              <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger">
+                <small *ngIf="f['username'].errors?.['required']">Username is required</small>
+                <small *ngIf="f['username'].errors?.['minlength']">At least 3 characters required</small>
+                <small *ngIf="f['username'].errors?.['pattern']">Only alphanumeric characters allowed</small>
+              </div>
+
+              <!-- User Role Dropdown -->
+              <c-input-group class="mb-3 w-100 d-flex align-items-center" style="height: 45px;">
+                <span cInputGroupText class="flex-shrink-0 d-flex align-items-center justify-content-center" style="height: 100%; width: 45px;">
+                  <svg cIcon name="cilUser" style="font-size: 1.2rem;"></svg>
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
+                <select class="form-control flex-grow-1" style="height: 100%; font-size: 1rem;" formControlName="userRole">
+                  <option value="" disabled selected>Select User Role</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Supervisor">Supervisor</option>
+                  <option value="Operator">Operator</option>
+                </select>
               </c-input-group>
-              <c-input-group class="mb-4">
-                <span cInputGroupText>
-                  <svg cIcon name="cilLockLocked"></svg>
+              <div *ngIf="f['userRole'].invalid && (f['userRole'].dirty || submitted)" class="text-danger">
+                <small *ngIf="f['userRole'].errors?.['required']">User Role is required</small>
+              </div>
+
+              <!-- Email Field -->
+              <c-input-group class="mb-3 w-100 d-flex align-items-center" style="height: 45px;">
+                <span cInputGroupText class="flex-shrink-0 d-flex align-items-center justify-content-center" style="height: 100%; width: 45px;">
+                  &#64;
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
+                <input id="email" class="form-control flex-grow-1" style="height: 100%; font-size: 1rem;" placeholder="Email" formControlName="email">
               </c-input-group>
+              <div *ngIf="f['email'].invalid && (f['email'].dirty || submitted)" class="text-danger">
+                <small *ngIf="f['email'].errors?.['required']">Email is required</small>
+                <small *ngIf="f['email'].errors?.['email']">Enter a valid email address</small>
+                <small *ngIf="f['email'].errors?.['invalidDomain']">Email must end with .com, .org, or .net</small>
+              </div>
+              
+              <!-- Password Field -->
+              <c-input-group class="mb-3 w-100 d-flex align-items-center" style="height: 45px;">
+                <span cInputGroupText class="flex-shrink-0 d-flex align-items-center justify-content-center" style="height: 100%; width: 45px;">
+                  <svg cIcon name="cilLockLocked" style="font-size: 1.2rem;"></svg>
+                </span>
+                <input id="password" class="form-control flex-grow-1" style="height: 100%; font-size: 1rem;" placeholder="Password" type="password" formControlName="password">
+              </c-input-group>
+              <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger">
+                <small *ngIf="f['password'].errors?.['required']">Password is required</small>
+                <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters</small>
+              </div>
+
+              <!-- Repeat Password Field -->
+              <c-input-group class="mb-3 w-100 d-flex align-items-center" style="height: 45px;">
+                <span cInputGroupText class="flex-shrink-0 d-flex align-items-center justify-content-center" style="height: 100%; width: 45px;">
+                  <svg cIcon name="cilLockLocked" style="font-size: 1.2rem;"></svg>
+                </span>
+                <input id="repeatPassword" class="form-control flex-grow-1" style="height: 100%; font-size: 1rem;" placeholder="Repeat Password" type="password" formControlName="repeatPassword">
+              </c-input-group>
+              <div *ngIf="f['repeatPassword'].invalid && (f['repeatPassword'].dirty || submitted) || (registerForm.errors?.['passwordMismatch'])" class="text-danger">
+                <small *ngIf="f['repeatPassword'].errors?.['required']">Repeat password is required</small>
+                <small *ngIf="registerForm.errors?.['passwordMismatch']">Passwords do not match</small>
+              </div>
+
+              <!-- Submit Button -->
               <div class="d-grid">
-                <button cButton color="success">Create Account</button>
+                <button cButton color="success" type="submit" class="w-100">Create Account</button>
               </div>
             </form>
           </c-card-body>

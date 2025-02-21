@@ -8,7 +8,7 @@ import { ImgModule } from '@coreui/angular';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';  // ✅ Import CommonModule
-import { LoginService } from 'src/app/services/login.service';
+
 // import { IconDirective } from '@coreui/icons-angular';
 import {
   AvatarModule,
@@ -33,6 +33,7 @@ import {
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
+import { LoginService } from '../../services/login.service';
 
 function isOverflown(element: HTMLElement) {
   return (
