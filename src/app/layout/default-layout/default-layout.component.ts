@@ -127,12 +127,14 @@ export class DefaultLayoutComponent {
           alert('Login successful!');
           localStorage.setItem('token', response.token);
           this.router.navigate(['/master']);
-          this.closeLoginModal();
+          this.toggleLiveDemo();
+          // this.closeLoginModal();
         } else {
           this.errorMessage = 'Invalid username or password';
         }
       },
       (error) => {
+        alert('Login Failed!');
         console.error('Login failed', error);
         this.errorMessage = 'Invalid username or password';
       }

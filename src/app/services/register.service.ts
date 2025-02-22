@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RegisterService {
-  private apiUrl = 'https://your-backend-api-url/api/register'; // Replace with your actual API endpoint
+  private apiUrl = 'http://192.168.2.172:8001/api/Registration/Registration'; // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 

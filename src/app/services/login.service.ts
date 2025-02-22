@@ -10,7 +10,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}  // ✅ Inject HttpClient
 
-  login(userId: string, password: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { userId, password });
+  login(userName: string, password: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { userName, password });
   }
 }

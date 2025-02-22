@@ -53,11 +53,13 @@ export class RegisterComponent {
     // Send form data to AuthService
     this.authService.registerUser(this.registerForm.value).subscribe(
       response => {
+        alert('Registration successful');
         console.log('Registration successful', response);
         this.registerForm.reset();
         this.submitted = false;
       },
       error => {
+        alert('Registration failed!');
         console.error('Registration failed', error);
         this.errorMessage = 'Registration failed. Please try again later.';
       }
