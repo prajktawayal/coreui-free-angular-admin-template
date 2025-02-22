@@ -19,94 +19,134 @@
   }
 </c-sidebar>
 
-<!--main-->
+<!-- Main Wrapper -->
 <div class="wrapper d-flex flex-column min-vh-100">
-  <!--app-header-->
-  <app-default-header [cShadowOnScroll]="'sm'" class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
-    position="sticky" sidebarId="sidebar1" (openModalEvent)="toggleLiveDemo()" />
-  <c-modal #modalXl #verticallyCenteredModal size="xl" id="liveDemoModal" [visible]="visible"
-    (visibleChange)="handleLiveDemoChange($event)">
-    <c-modal-header>
-      <!-- <h5 cModalTitle>Login</h5> -->
+  <!-- App Header -->
+  <app-default-header
+    [cShadowOnScroll]="'sm'"
+    class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
+    position="sticky"
+    sidebarId="sidebar1"
+    (openModalEvent)="toggleLiveDemo()"
+  />
+
+  <!-- Responsive Modal -->
+  <c-modal #modalXl #verticallyCenteredModal
+    size="lg"  
+    id="liveDemoModal"
+    class="c-modal-dialog-centered"  
+    [visible]="visible"
+    (visibleChange)="handleLiveDemoChange($event)"
+  >
+    <c-modal-header class="d-flex justify-content-between align-items-center">
+      <h5 cModalTitle class="text-primary d-none d-md-block">Login</h5> 
       <button (click)="toggleLiveDemo()" cButtonClose></button>
     </c-modal-header>
+
     <c-modal-body>
-      <c-card-group>
-        <c-card class="p-5">
+      <c-card-group class="d-flex flex-column flex-md-row">
+        <!-- Left Section - Form -->
+        <c-card class="p-4 flex-grow-1">
           <c-card-body>
             <form cForm [formGroup]="loginForm">
-              <h1>Login</h1>
-              <p class="text-body-secondary">Sign In to your account</p>
-              <c-input-group class="mb-3">
+              <h1 class="text-center text-md-start">Login</h1>
+              <p class="text-body-secondary text-center text-md-start">
+                Sign in to your account
+              </p>
+
+              <!-- Username Input -->
+              <c-input-group class="mb-3 w-100">
                 <span cInputGroupText>
                   <svg cIcon name="cilUser"></svg>
                 </span>
-             <input formControlName="username" type="text" cFormControl placeholder="Username" required />
+                <input
+                  formControlName="username"
+                  type="text"
+                  cFormControl
+                  placeholder="Username"
+                  required
+                />
               </c-input-group>
-              <!-- Username Validation Messages -->
-              <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger">
+
+              <!-- Validation for Username -->
+              <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger small">
                 <small *ngIf="f['username'].errors?.['required']">Username is required</small>
                 <small *ngIf="f['username'].errors?.['minlength']">At least 3 characters required</small>
                 <small *ngIf="f['username'].errors?.['pattern']">Only alphanumeric characters allowed</small>
               </div>
-              <c-input-group class="mb-4">
+
+              <!-- Password Input -->
+              <c-input-group class="mb-4 w-100">
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                 <input formControlName="password" type="password" cFormControl placeholder="Password" required />
+                <input
+                  formControlName="password"
+                  type="password"
+                  cFormControl
+                  placeholder="Password"
+                  required
+                />
               </c-input-group>
-              <!-- Password Validation Messages -->
-                <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger">
+
+              <!-- Validation for Password -->
+              <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger small">
                 <small *ngIf="f['password'].errors?.['required']">Password is required</small>
                 <small *ngIf="f['password'].errors?.['minlength']">At least 6 characters required</small>
               </div>
-              <c-row>
-                <c-col xs="2">
-                  <button (click)="toggleLiveDemo()" cButton color="secondary" class="px-2">Close</button>
+
+              <!-- Buttons -->
+              <c-row class="d-flex justify-content-center mt-3">
+                <c-col xs="12" md="5" class="mb-2">
+                  <button (click)="toggleLiveDemo()" cButton color="secondary" class="w-100">
+                    Close
+                  </button>
                 </c-col>
-                <c-col xs="2">
-                  <button type="submit" (click)="login()" cButton class="px-4" color="primary">
+                <c-col xs="12" md="5">
+                  <button type="submit" (click)="login()" cButton color="primary" class="w-100">
                     Login
                   </button>
                 </c-col>
-                <c-col class="text-center" xs="8">
-                  <button cButton class="px-0" color="link">
-                    Forgot password?
-                  </button>
+              </c-row>
+
+              <!-- Forgot Password / Register Links -->
+              <c-row class="text-center mt-3">
+                <c-col>
+                  <button cButton class="px-0" color="link">Forgot password?</button>
                 </c-col>
               </c-row>
-              <c-row class="align-items-end p-3">
+
+              <c-row class="text-center mt-3">
                 <c-col>
-                  <p class="text-body-secondary">Not registered yet? <button cButton class="px-0" color="link"
-                      routerLink="./pages/register" (click)="toggleLiveDemo()">
+                  <p class="text-body-secondary">
+                    Not registered yet?
+                    <button cButton class="px-0" color="link" routerLink="./pages/register" (click)="toggleLiveDemo()">
                       Register here!
-                    </button></p>
+                    </button>
+                  </p>
                 </c-col>
               </c-row>
             </form>
           </c-card-body>
         </c-card>
-        <c-card [ngStyle]="{'minWidth.%': 44}" class="text-white bg-primary py-5">
+
+        <!-- Right Section - Image -->
+        <c-card class="text-white bg-primary py-4 d-none d-md-flex align-items-center justify-content-center">
           <c-card-body class="text-center">
-            <div>
-              <div class="clearfix">
-                <img cImg align="center" height="300" src="./assets/images/login.png" width="400" />
-              </div>
-             </div>
+            <img cImg class="img-fluid" src="./assets/images/login.png" style="max-width: 100%; height: auto;" />
           </c-card-body>
         </c-card>
       </c-card-group>
-
     </c-modal-body>
-    <c-modal-footer>
-     </c-modal-footer>
   </c-modal>
-  <!--app-body-->
+
+  <!-- App Body -->
   <div class="body flex-grow-1">
     <c-container breakpoint="lg" class="h-auto px-4">
       <router-outlet />
     </c-container>
   </div>
-  <!--app footer-->
+
+  <!-- App Footer -->
   <app-default-footer />
 </div>

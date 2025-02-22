@@ -1,0 +1,112 @@
+<!--sidebar-->
+<c-sidebar #sidebar1="cSidebar" class="d-print-none sidebar sidebar-fixed border-end" colorScheme="dark" id="sidebar1"
+  visible>
+  <c-sidebar-header style="text-align: center;">
+    <c-sidebar-brand [routerLink]="[]">
+      <h1 class="card-title mb-0">MintFDI</h1>
+     </c-sidebar-brand>
+  </c-sidebar-header>
+
+  <ng-scrollbar pointerEventsMethod="scrollbar" visibility="hover">
+    <c-sidebar-nav [navItems]="navItems" dropdownMode="close" compact />
+  </ng-scrollbar>
+
+  @if (!sidebar1.narrow) {
+  <c-sidebar-footer cSidebarToggle="sidebar1" class="border-top d-none d-lg-flex" toggle="unfoldable"
+    style="cursor: pointer;">
+    <button cSidebarToggler aria-label="Toggle sidebar fold"></button>
+  </c-sidebar-footer>
+  }
+</c-sidebar>
+
+<!--main-->
+<div class="wrapper d-flex flex-column min-vh-100">
+  <!--app-header-->
+  <app-default-header [cShadowOnScroll]="'sm'" class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
+    position="sticky" sidebarId="sidebar1" (openModalEvent)="toggleLiveDemo()" />
+  <c-modal #modalXl #verticallyCenteredModal size="xl" id="liveDemoModal" [visible]="visible"
+    (visibleChange)="handleLiveDemoChange($event)">
+    <c-modal-header>
+      <!-- <h5 cModalTitle>Login</h5> -->
+      <button (click)="toggleLiveDemo()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body>
+      <c-card-group>
+        <c-card class="p-5">
+          <c-card-body>
+            <form cForm [formGroup]="loginForm">
+              <h1>Login</h1>
+              <p class="text-body-secondary">Sign In to your account</p>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+             <input formControlName="username" type="text" cFormControl placeholder="Username" required />
+              </c-input-group>
+              <!-- Username Validation Messages -->
+              <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger">
+                <small *ngIf="f['username'].errors?.['required']">Username is required</small>
+                <small *ngIf="f['username'].errors?.['minlength']">At least 3 characters required</small>
+                <small *ngIf="f['username'].errors?.['pattern']">Only alphanumeric characters allowed</small>
+              </div>
+              <c-input-group class="mb-4">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                 <input formControlName="password" type="password" cFormControl placeholder="Password" required />
+              </c-input-group>
+              <!-- Password Validation Messages -->
+                <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger">
+                <small *ngIf="f['password'].errors?.['required']">Password is required</small>
+                <small *ngIf="f['password'].errors?.['minlength']">At least 6 characters required</small>
+              </div>
+              <c-row>
+                <c-col xs="2">
+                  <button (click)="toggleLiveDemo()" cButton color="secondary" class="px-2">Close</button>
+                </c-col>
+                <c-col xs="2">
+                  <button type="submit" (click)="login()" cButton class="px-4" color="primary">
+                    Login
+                  </button>
+                </c-col>
+                <c-col class="text-center" xs="8">
+                  <button cButton class="px-0" color="link">
+                    Forgot password?
+                  </button>
+                </c-col>
+              </c-row>
+              <c-row class="align-items-end p-3">
+                <c-col>
+                  <p class="text-body-secondary">Not registered yet? <button cButton class="px-0" color="link"
+                      routerLink="./pages/register" (click)="toggleLiveDemo()">
+                      Register here!
+                    </button></p>
+                </c-col>
+              </c-row>
+            </form>
+          </c-card-body>
+        </c-card>
+        <c-card [ngStyle]="{'minWidth.%': 44}" class="text-white bg-primary py-5">
+          <c-card-body class="text-center">
+            <div>
+              <div class="clearfix">
+                <img cImg align="center" height="300" src="./assets/images/login.png" width="400" />
+              </div>
+             </div>
+          </c-card-body>
+        </c-card>
+      </c-card-group>
+
+    </c-modal-body>
+    <c-modal-footer>
+     </c-modal-footer>
+  </c-modal>
+  <!--app-body-->
+  <div class="body flex-grow-1">
+    <c-container breakpoint="lg" class="h-auto px-4">
+      <router-outlet />
+    </c-container>
+  </div>
+  <!--app footer-->
+  <app-default-footer />
+</div>
