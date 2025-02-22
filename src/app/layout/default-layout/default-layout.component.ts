@@ -27,7 +27,6 @@ import {
   ModalComponent,
   ModalFooterComponent,
   ModalHeaderComponent,
-  ModalTitleDirective,
   ThemeDirective
 } from '@coreui/angular';
 
@@ -66,7 +65,7 @@ function isOverflown(element: HTMLElement) {
     FormsModule,
     ReactiveFormsModule ,
     CommonModule,
-    ShadowOnScrollDirective, ButtonDirective, ModalComponent, ModalHeaderComponent, ModalTitleDirective, ThemeDirective, ButtonCloseDirective, ModalBodyComponent, ModalFooterComponent,
+    ShadowOnScrollDirective, ButtonDirective, ModalComponent, ModalHeaderComponent, ThemeDirective, ButtonCloseDirective, ModalBodyComponent, ModalFooterComponent,
     RowComponent, ColComponent, CardGroupComponent, TextColorDirective, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, IconDirective, FormControlDirective, NgStyle
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
