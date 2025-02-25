@@ -1,7 +1,6 @@
 import { Component,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
-import { NgStyle } from '@angular/common';
 import { IconDirective } from '@coreui/icons-angular';
 import { RowComponent, ColComponent, CardGroupComponent, TextColorDirective, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, FormControlDirective } from '@coreui/angular';
 import { ImgModule } from '@coreui/angular';
@@ -25,7 +24,6 @@ import {
   ButtonDirective,
   ModalBodyComponent,
   ModalComponent,
-  ModalFooterComponent,
   ModalHeaderComponent,
   ModalTitleDirective,
   ThemeDirective
@@ -66,8 +64,8 @@ function isOverflown(element: HTMLElement) {
     FormsModule,
     ReactiveFormsModule ,
     CommonModule,
-    ShadowOnScrollDirective, ButtonDirective, ModalComponent, ModalHeaderComponent, ModalTitleDirective, ThemeDirective, ButtonCloseDirective, ModalBodyComponent, ModalFooterComponent,
-    RowComponent, ColComponent, CardGroupComponent, TextColorDirective, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, IconDirective, FormControlDirective, NgStyle
+    ShadowOnScrollDirective, ButtonDirective, ModalComponent, ModalHeaderComponent, ModalTitleDirective, ThemeDirective, ButtonCloseDirective, ModalBodyComponent,
+    RowComponent, ColComponent, CardGroupComponent, TextColorDirective, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, IconDirective, FormControlDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
