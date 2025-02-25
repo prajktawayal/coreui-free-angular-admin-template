@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+
 export const routes: Routes = [
   {
     path: '404',
@@ -28,5 +29,13 @@ export const routes: Routes = [
     data: {
       title: 'Register Page'
     }
+  },
+  {
+    path:'line-master',
+    loadComponent: () => import('./line-master/line-master.component').then(m => m.lineMasterComponent),
+    data: {
+      title: 'Line Master Page'
+    }
   }
+  
 ];

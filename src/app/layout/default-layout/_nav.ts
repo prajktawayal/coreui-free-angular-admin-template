@@ -180,8 +180,8 @@ export const navItems: INavData[] = [
     name: 'Extras'
   },
   {
-    name: 'Pages',
-    url: '/login',
+    name: 'pages',
+    url: '/line-master',
     iconComponent: { name: 'cil-star' },
     children: [
       {
@@ -199,6 +199,18 @@ export const navItems: INavData[] = [
         url: '/plant-master',
         icon: 'nav-icon-bullet'
       },
+      {
+        name:'LineMaster',
+        url:'/line-master',
+        icon:'nav-icon-bullet'
+      },
+      {
+        name:'FactoryMaster',
+        url:'/factory-master',
+        icon:'nav-icon-bullet'
+      },
+   
+     
       {
         name: 'Error 404',
         url: '/404',
