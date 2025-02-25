@@ -22,6 +22,7 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
+      
       {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
@@ -59,9 +60,17 @@ export const routes: Routes = [
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
       },
       {
+        path: 'line-master',
+        loadChildren: () => import('./views/pages/line-master/routes').then((m) => m.routes)
+      },
+      {
         path: 'plant-master',
         loadChildren:()=>import('./views/plant-master/routes').then((m) => m.routes)
       },
+      {
+        path: 'factory-master',
+        loadChildren:()=>import('./views/pages/factory-master/routes').then((m) => m.routes)
+      }
     ]
   },
   {
@@ -91,6 +100,10 @@ export const routes: Routes = [
     data: {
       title: 'Register Page'
     }
+    
   },
+  
+ 
+  
   { path: '**', redirectTo: 'dashboard' }
 ];

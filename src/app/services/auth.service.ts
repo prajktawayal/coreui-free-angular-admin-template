@@ -7,10 +7,10 @@ import { Inject, Injectable } from '@angular/core';
 export class AuthService {
   private baseserverurl = 'http://localhost:2030/api/';
 
-  constructor(@Inject(HttpClient) private http: HttpClient) {}  // ✅ Use @Inject()
+  constructor(private http: HttpClient) {} 
 
   SavePlantMaster(master: { PlantId: string; plantName: string; FactoryId: string; Plantnumber: string }) {
     return this.http.post<{ message: string }>(`${this.baseserverurl}PlantMaster/PlantMaster`, master);
-
   }
+   
 }

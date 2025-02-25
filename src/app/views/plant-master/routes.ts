@@ -6,7 +6,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./plant-master.component').then(m => m.PlantMasterComponent),
     data: {
-      title: $localize`plantmaster`
+      title: `plantmaster`
     }
   }
 ];
