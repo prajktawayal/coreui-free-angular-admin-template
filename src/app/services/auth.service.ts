@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'; // ✅ Import Observable
   providedIn: 'root'  // ✅ Ensure it's provided in root
 })
 export class AuthService {
-  private baseserverurl = 'http://localhost:2030/api/';
+  private baseserverurl = 'http://192.168.2.172:8001/api/';
 
   constructor(private http: HttpClient) {} 
 
@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post<{ message: string }>(`${this.baseserverurl}PlantMaster/UpdatePlantMaster`, payload);
   }
   deletePlantMaster(plantId:string) {
-    return this.http.delete<{ message: string }>(`${this.baseserverurl}PlantMaster/DeletePlantMaster/${plantId}`);
+    return this.http.delete<{ message: string }>(`${this.baseserverurl}PlantMaster/${plantId}`);
   }
    
 }
