@@ -60,7 +60,7 @@ export const routes: Routes = [
       },
       {
         path: 'plant-master',
-        loadChildren:()=>import('./views/plant-master/routes').then((m) => m.routes)
+        loadChildren:()=>import('./views/pages/plant-master/routes').then((m) => m.routes)
       },
     ]
   },

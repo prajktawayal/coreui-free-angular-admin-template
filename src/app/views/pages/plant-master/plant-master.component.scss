@@ -1,0 +1,10 @@
+/* Change background color of alternating rows */
+tbody tr:nth-child(even) {
+    background-color: #e6f7ff !important; /* Light Blue */
+  }
+  
+  /* Optional: Change background on hover */
+  tbody tr:hover {
+    background-color: #d1ecf1 !important; /* Light Cyan */
+  }
+  
