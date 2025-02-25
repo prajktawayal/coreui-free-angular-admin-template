@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';  // ✅ Import CommonModule
 // import { IconDirective } from '@coreui/icons-angular';
 import {
   AvatarModule,
-  ContainerComponent,
+  // ContainerComponent,
   ShadowOnScrollDirective,
   SidebarBrandComponent,
   SidebarComponent,
@@ -53,7 +53,7 @@ function isOverflown(element: HTMLElement) {
     SidebarFooterComponent,
     SidebarToggleDirective,
     SidebarTogglerDirective,
-    ContainerComponent,
+    // ContainerComponent,
     DefaultFooterComponent,
     DefaultHeaderComponent,
     AvatarModule,

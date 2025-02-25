@@ -141,12 +141,24 @@
   </c-modal>
 
   <!-- App Body -->
-  <div class="body flex-grow-1">
-    <c-container breakpoint="lg" class="h-auto px-4">
+  <!-- <div class="body flex-grow-1">
+  <c-container breakpoint="lg" class="h-auto p-0 m-0">
+
       <router-outlet />
     </c-container>
-  </div>
+  </div> -->
 
+
+
+  <div class="body flex-grow-1" style="background-color:f1f2f8 ;">
+ <!-- <div class="container" style="background-color: azure;">    -->
+  <router-outlet />
+<!-- </div> -->
+  
+     
+
+    </div>
+  
   <!-- App Footer -->
   <app-default-footer />
 </div>
