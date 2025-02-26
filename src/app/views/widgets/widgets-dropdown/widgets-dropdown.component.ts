@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { getStyle } from '@coreui/utils';
 import { ChartjsComponent } from '@coreui/angular-chartjs';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IconDirective } from '@coreui/icons-angular';
 import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, ThemeDirective, DropdownComponent, ButtonDirective, DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective, DropdownDividerDirective } from '@coreui/angular';
 
@@ -23,32 +23,29 @@ import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, 
 export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+    private changeDetectorRef: ChangeDetectorRef,
+    private router: Router
+  ) {
+    
+  }
 
   data: any[] = [];
   options: any[] = [];
+
+
+
+
   labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-    'January',
-    'February',
-    'March',
-    'April'
+    'Prod Name -Resistor 10kO',
+    'Prod Name -Capacitor 100µF',
+    'Prod Name -Microcontroller ATmega328',
+    'Prod Name -LED Red',
+    'Prod Name -Transistor NPN'
+    
   ];
   datasets = [
     [{
-      label: 'My First dataset',
+      label: 'Price',
       backgroundColor: 'transparent',
       borderColor: 'rgba(255,255,255,.55)',
       pointBackgroundColor: getStyle('--cui-primary'),
@@ -175,6 +172,11 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
         }
       }
     }
+  }
+
+  navigateToEMS() {
+    this.router.navigate(['/app-ems-malanpur']);
+
   }
 }
 
