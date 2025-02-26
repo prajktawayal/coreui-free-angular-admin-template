@@ -1,0 +1,73 @@
+<div class="container d-flex justify-content-center align-items-center mt-5" >
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%; border-radius: 10px;">
+        <div class="text-center mb-3 form-control rounded-left " style=" background-color: #f0f8ff;">
+            <h4 class="mt-2">line Master</h4></div>
+        <div class="text-center mb-3">
+           
+            
+    <form [formGroup]="lineForm" (ngSubmit)="lineFormSubmit()">  
+       
+        <div class="mb-3">
+            <label for="LineId" class="form-label">line Id</label>
+            <input type="text"  class="form-control rounded-pill" id="LineId" formControlName="LineId">
+            <div *ngIf="lineId?.invalid && lineId?.touched" class="text-danger">
+                line ID is required
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="NoOfLines" class="form-label">Number of Lines</label>
+                <input type="text" class="form-control rounded-pill" id="NoOfLines" formControlName="NoOfLines">
+            </div>
+            <div *ngIf="lineNumber?.invalid && lineNumber?.touched" class="text-danger">
+                Line Number is required
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="PlantId" class="form-label">Plant ID</label>
+                <input type="text" class="form-control rounded-pill" id="PlantId" formControlName="PlantId">
+            </div>
+            <div *ngIf="plantId?.invalid && plantId?.touched" class="text-danger">
+                plant ID is required
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="Factory" class="form-label">Factory Id</label>
+                <input type="text" class="form-control rounded-pill" id="Factory" formControlName="Factory">
+            </div>
+            <div *ngIf="FactoryId?.invalid && FactoryId?.touched" class="text-danger">
+                factory ID is required
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="LineName" class="form-label">line Name</label>
+                <input type="text" class="form-control rounded-pill" id="LineName" formControlName="LineName">
+            </div>
+            <div *ngIf="lineName?.invalid && lineName?.touched" class="text-danger">
+                Line Name is required
+            </div>
+        </div>
+
+        
+        <div class="row mb-3">
+            <div class="col-6 offset-3">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark rounded-pill" [disabled]="lineForm.invalid">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>  
+</div>
+
+

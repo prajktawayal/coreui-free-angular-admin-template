@@ -1,0 +1,157 @@
+<div class="row text-center shadow mb-4 mt-2 " style=" color:#36454F;text-shadow: 2px 2px wheat;">
+  <h1>Plant Master Detailed Information</h1>
+</div>
+<div class=" row m-5" >
+  <!-- <div class="container  col ms-1 p-3" style="background-color: #f0f8ff;">   -->
+    <!-- <div class="card p-4 shadow mt-2 " style="max-width:800px; width: 100%; border-radius: 10px;"> -->
+      <div class=" col card p-4 shadow shadow mt-2 " style="max-width: 600px; border-radius:25px; margin: 0px;background-color: f1f2f8 ;">
+      <div class="text-center mb-3 form-control rounded-left " >
+            <h4 class="mt-2 " style="font-weight: bolder; font-style: italic; color:#6E260E; font-size:xx-large;">Plant Master Form</h4></div>
+        <div class="text-center mb-3">
+           
+   
+            <p class="text-center fs-3" [ngClass]="isAlready ? 'text-success pb-1' : 'text-danger pb-1'">
+                {{ displayedMsg }}
+              </p>
+              
+    <form [formGroup]="plantForm" (ngSubmit)="plantFormSubmit()">  
+       <div class="mb-3">
+        <label for="plantid" class="form-label" style="font-size: 20px; font-weight: bolder;">Plant Id</label>
+            <input type="text"  class="form-control rounded" id="plantid" formControlName="plantid">
+            <div *ngIf="PlantId?.invalid && PlantId?.touched" class="text-danger">
+                Plant ID is required
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="plantname" class="form-label" style="font-size: 20px; font-weight: bolder;">Plant Name</label>
+                <input type="text" class="form-control rounded" id="plantname" formControlName="plantname">
+                <div *ngIf="PlantName?.invalid && PlantName?.touched" class="text-danger">
+                    Plant Name is required
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="factoryid" class="form-label" style="font-size: 20px; font-weight: bolder;">Factory Id</label>
+                <input type="text" class="form-control rounded" id="factoryid" formControlName="factoryid">
+                <div *ngIf="FactoryId?.invalid && FactoryId?.touched" class="text-danger">
+                    Factory id is required
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3 p-2">
+                <label for="plantnumber" class="form-label" style="font-size: 20px; font-weight: bolder;">Plant Number</label>
+                <input type="text" class="form-control rounded" id="plantnumber" formControlName="plantnumber">
+                <div *ngIf="PlantNumber?.invalid && PlantNumber?.touched" class="text-danger">
+                    Plant Number is required
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-6 offset-3">
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary  rounded" style="background-color: blue;font-size: 20px; font-weight: bolder;" [disabled]="plantForm.invalid">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>  
+
+<!-- </div> -->
+<!-- <div class="container d-flex  col" style="background-color: aquamarine;margin-right: 10px;"> -->
+  
+  <div class="col p-4 shadow align-items-left ms-1 mt-2 rounded bg-light">
+    <div class="text-center mb-3 form-control rounded">
+      <h4 class="mt-2  fw-bold"style="font-weight: bolder; font-style: italic; color:#6E260E; font-size:xx-large">Plant Information</h4>
+    </div>
+  
+    <!-- Wrap your table in a container for scrolling -->
+    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+      <table class="table table-bordered table-hover table-striped align-middle">
+        <thead class="bg-dark text-white text-center">
+          <tr>
+            <th scope="col">Row Id</th>
+            <th scope="col">Plant Id</th>
+            <th scope="col">Plant Name</th>
+            <th scope="col">Factory Id</th>
+            <th scope="col">Plant Number</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let item of plantMasterList | keyvalue">
+            <td class="fw-bold">{{ item.key }}</td>
+  
+            <!-- Plant Id Column -->
+            <td>
+              <ng-container *ngIf="!item.value.isEditing; else editPlantId">
+                {{ item.value.plantId }}
+              </ng-container>
+              <ng-template #editPlantId>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.value.plantId">
+              </ng-template>
+            </td>
+  
+            <!-- Plant Name Column -->
+            <td>
+              <ng-container *ngIf="!item.value.isEditing; else editPlantName">
+                {{ item.value.plantName }}
+              </ng-container>
+              <ng-template #editPlantName>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.value.plantName">
+              </ng-template>
+            </td>
+  
+            <!-- Factory Id Column -->
+            <td>
+              <ng-container *ngIf="!item.value.isEditing; else editFactoryId">
+                {{ item.value.factoryId }}
+              </ng-container>
+              <ng-template #editFactoryId>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.value.factoryId">
+              </ng-template>
+            </td>
+  
+            <!-- Plant Number Column -->
+            <td>
+              <ng-container *ngIf="!item.value.isEditing; else editPlantNumber">
+                {{ item.value.plantnumber }}
+              </ng-container>
+              <ng-template #editPlantNumber>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.value.plantnumber">
+              </ng-template>
+            </td>
+  
+            <!-- Actions Column -->
+            <td>
+              <button *ngIf="!item.value.isEditing" (click)="editRow(item.key)" class="btn btn-sm btn-primary">
+                Edit
+              </button>
+              <button *ngIf="item.value.isEditing" (click)="saveRow(item.key)" class="btn btn-sm btn-success">
+                Save
+              </button>
+              <button (click)="DeleteRow(item.key)" class="btn btn-sm btn-success">
+              Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+ </div>
+  
+  
+  
+<!-- </div> -->
+
+

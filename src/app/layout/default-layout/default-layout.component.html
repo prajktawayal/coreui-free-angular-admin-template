@@ -4,7 +4,7 @@
   <c-sidebar-header style="text-align: center;">
     <c-sidebar-brand [routerLink]="[]">
       <h1 class="card-title mb-0">MintFDI</h1>
-     </c-sidebar-brand>
+    </c-sidebar-brand>
   </c-sidebar-header>
 
   <ng-scrollbar pointerEventsMethod="scrollbar" visibility="hover">
@@ -22,24 +22,14 @@
 <!-- Main Wrapper -->
 <div class="wrapper d-flex flex-column min-vh-100">
   <!-- App Header -->
-  <app-default-header
-    [cShadowOnScroll]="'sm'"
-    class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
-    position="sticky"
-    sidebarId="sidebar1"
-    (openModalEvent)="toggleLiveDemo()"
-  />
+  <app-default-header [cShadowOnScroll]="'sm'" class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
+    position="sticky" sidebarId="sidebar1" (openModalEvent)="toggleLiveDemo()" />
 
   <!-- Responsive Modal -->
-  <c-modal #modalXl #verticallyCenteredModal
-    size="lg"  
-    id="liveDemoModal"
-    class="c-modal-dialog-centered"  
-    [visible]="visible"
-    (visibleChange)="handleLiveDemoChange($event)"
-  >
+  <c-modal #modalXl #verticallyCenteredModal size="lg" id="liveDemoModal" class="c-modal-dialog-centered"
+    [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
     <c-modal-header class="d-flex justify-content-between align-items-center">
-      <h5 cModalTitle class="text-primary d-none d-md-block">Login</h5> 
+      <h5 cModalTitle class="text-primary d-none d-md-block">Login</h5>
       <button (click)="toggleLiveDemo()" cButtonClose></button>
     </c-modal-header>
 
@@ -59,13 +49,8 @@
                 <span cInputGroupText>
                   <svg cIcon name="cilUser"></svg>
                 </span>
-                <input
-                  formControlName="username"
-                  type="text"
-                  cFormControl
-                  placeholder="Username"
-                  required
-                />
+                <input formControlName="username" type="text" cFormControl class="border-start-0 "
+                  placeholder="Username" required />
               </c-input-group>
 
               <!-- Validation for Username -->
@@ -76,18 +61,27 @@
               </div>
 
               <!-- Password Input -->
-              <c-input-group class="mb-4 w-100">
+              <c-input-group class="mb-3 w-100">
+
+                <!-- Lock Icon Inside the Input Field -->
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                <input
-                  formControlName="password"
-                  type="password"
-                  cFormControl
-                  placeholder="Password"
-                  required
-                />
+
+                <!-- Password Input Field -->
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" cFormControl
+                  class="border-start-0 border-end-0" placeholder="Password" required />
+
+                <!-- Clickable PNG Image to Show/Hide Password -->
+                <span cInputGroupText class="bg-white border-start-0" (click)="togglePasswordVisibility()"
+                  style="cursor: pointer;">
+                  <img [src]="showPassword ? 'assets/images/hide.png' : 'assets/images/eye.png'" alt="Toggle Password"
+                    width="20" height="20" />
+                </span>
+
               </c-input-group>
+
+
 
               <!-- Validation for Password -->
               <div *ngIf="f['password'].invalid && (f['password'].dirty || submitted)" class="text-danger small">
@@ -102,8 +96,12 @@
                     Close
                   </button>
                 </c-col>
+                <!-- Show Lockout Timer -->
+                <div *ngIf="isLocked" class="text-danger text-center">
+                  Too many failed attempts. Try again in {{ lockoutTime }} seconds.
+                </div>
                 <c-col xs="12" md="5">
-                  <button type="submit" (click)="login()" cButton color="primary" class="w-100">
+                  <button type="submit" (click)="login()" cButton color="primary" class="w-100" [disabled]="isLocked">
                     Login
                   </button>
                 </c-col>
@@ -141,12 +139,24 @@
   </c-modal>
 
   <!-- App Body -->
-  <div class="body flex-grow-1">
-    <c-container breakpoint="lg" class="h-auto px-4">
+  <!-- <div class="body flex-grow-1">
+  <c-container breakpoint="lg" class="h-auto p-0 m-0">
+
       <router-outlet />
     </c-container>
-  </div>
+  </div> -->
 
+
+
+  <div class="body flex-grow-1" style="background-color:f1f2f8 ;">
+ <!-- <div class="container" style="background-color: azure;">    -->
+  <router-outlet />
+<!-- </div> -->
+  
+     
+
+    </div>
+  
   <!-- App Footer -->
   <app-default-footer />
 </div>
