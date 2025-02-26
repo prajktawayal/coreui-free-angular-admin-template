@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
+import { EmsMalanpurComponent } from './views/ems-malanpur/ems-malanpur.component';
 
 export const routes: Routes = [
   {
@@ -62,6 +63,12 @@ export const routes: Routes = [
         path: 'plant-master',
         loadChildren:()=>import('./views/plant-master/routes').then((m) => m.routes)
       },
+      {
+        path: 'app-ems-malanpur',  // Add this route inside children if it should be under DefaultLayoutComponent
+        component: EmsMalanpurComponent,
+        data: { title: 'EMS Malanpur' }
+      }
+     
     ]
   },
   {
@@ -91,6 +98,11 @@ export const routes: Routes = [
     data: {
       title: 'Register Page'
     }
+  },
+  {
+    path: 'app-ems-malanpur', // Add this route outside children if it's an independent page
+    component: EmsMalanpurComponent,
+    data: { title: 'EMS Malanpur' }
   },
   { path: '**', redirectTo: 'dashboard' }
 ];
