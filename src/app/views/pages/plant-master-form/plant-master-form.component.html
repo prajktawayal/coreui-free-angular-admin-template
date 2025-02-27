@@ -1,0 +1,165 @@
+<div class="col p-4 shadow align-items-left ms-1 mt-2 rounded bg-light">
+    <!-- Header with toggle button -->
+    <div class="text-center mb-3 form-control rounded  " style="background-color:#a1bcce ;">
+        <div class="d-flex align-items-center mb-3 ">
+              <div class="flex-grow-1 text-center ">
+                <h4 
+                  class="mt-2 fw-bold mb-0" 
+                  style="font-weight: bolder; font-style: italic; color: #071949; font-size: xx-large;"> Plant Information
+                </h4>
+              </div>
+              
+              <!-- 2) Button on the right -->
+              <button 
+                (click)="toggleLiveDemo()" 
+                cButton
+                class="ms-3 mt-3 btn-secondary"
+              >Add Plant Master Data
+              </button>
+          </div>
+      <c-modal  #verticallyCenteredModal alignment="center" id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+        <c-modal-header style="background-color: #d4e1f1 ;">
+          <h5 cModalTitle >Plant Master Form</h5>
+          <button (click)="toggleLiveDemo()" cButtonClose></button>
+        </c-modal-header>
+        <c-modal-body><form [formGroup]="plantForm" (ngSubmit)="plantFormSubmit()" >
+            <!-- Plant ID -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="plantid"
+                formControlName="plantid"
+                placeholder="Plant ID"
+              />
+              <label for="plantid">Plant ID</label>
+              <div *ngIf="PlantId?.invalid && PlantId?.touched" class="text-danger mt-1">
+                Plant ID is required
+              </div>
+            </div>
+  
+            <!-- Plant Name -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="plantname"
+                formControlName="plantname"
+                placeholder="Plant Name"
+              />
+              <label for="plantname">Plant Name</label>
+              <div *ngIf="PlantName?.invalid && PlantName?.touched" class="text-danger mt-1">
+                Plant Name is required
+              </div>
+            </div>
+  
+            <!-- Factory ID -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="factoryid"
+                formControlName="factoryid"
+                placeholder="Factory ID"
+              />
+              <label for="factoryid">Factory ID</label>
+              <div *ngIf="FactoryId?.invalid && FactoryId?.touched" class="text-danger mt-1">
+                Factory ID is required
+              </div>
+            </div>
+  
+            <!-- Plant Number -->
+            <div class="form-floating mb-4">
+              <input
+                type="text"
+                class="form-control"
+                id="plantnumber"
+                formControlName="plantnumber"
+                placeholder="Plant Number"
+              />
+              <label for="plantnumber">Plant Number</label>
+              <div *ngIf="PlantNumber?.invalid && PlantNumber?.touched" class="text-danger mt-1">
+                Plant Number is required
+              </div>
+            </div>
+  
+            <!-- Submit Button -->
+     
+          </form></c-modal-body>
+        <c-modal-footer>
+          <button (click)="toggleLiveDemo()" cButton color="secondary" class="btn btn-primary btn-lg fw-bold">
+            Close
+          </button>
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg fw-bold"
+                [disabled]="plantForm.invalid" (click)="plantFormSubmit()"
+              >
+                Submit
+              </button>
+      
+        </c-modal-footer>
+      </c-modal>
+
+ 
+     
+    </div>
+
+<!-- Grid Data Container -->
+<div class="grid-data-container">
+    <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+      <table class="table table-bordered table-hover table-striped align-middle">
+        <thead class="bg-dark text-white text-center">
+          <tr>
+            <th scope="col" style="background-color: #a1bcce ;">Plant Id</th>
+            <th scope="col"style="background-color: #a1bcce ;">Plant Name</th>
+            <th scope="col"style="background-color: #a1bcce ;">Factory Id</th>
+            <th scope="col"style="background-color: #a1bcce ;">Plant Number</th>
+            <th scope="col" style="background-color: #a1bcce ;">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let item of plantMasterList; let i = index">
+            <td class="fw-bold">{{ item.plantId }}</td>
+            <td>
+              <ng-container *ngIf="!item.isEditing; else editPlantName">
+                {{ item.plantName }}
+              </ng-container>
+              <ng-template #editPlantName>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.plantName">
+              </ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="!item.isEditing; else editFactoryId">
+                {{ item.factoryId }}
+              </ng-container>
+              <ng-template #editFactoryId>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.factoryId">
+              </ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="!item.isEditing; else editPlantNumber">
+                {{ item.plantnumber }}
+              </ng-container>
+              <ng-template #editPlantNumber>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.plantnumber">
+              </ng-template>
+            </td>
+            <td>
+              <button *ngIf="!item.isEditing" (click)="editRow(i)" class="btn btn-sm btn-secondary m-2">
+                Edit
+              </button>
+              <button *ngIf="item.isEditing" (click)="saveRow(i)" class="btn btn-sm btn-success">
+                Save
+              </button>
+              <button (click)="DeleteRow(i)" class="btn btn-sm btn-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  
