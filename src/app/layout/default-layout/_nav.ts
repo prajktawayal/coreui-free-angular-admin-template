@@ -209,7 +209,13 @@ export const navItems: INavData[] = [
         url:'/factory-master',
         icon:'nav-icon-bullet'
       },
-   
+      {
+        
+        name:'PlantMasterForm',
+        url:'/plant-master-form',
+        icon:'nav-icon-bullet'
+      },
+     
      
       {
         name: 'Error 404',

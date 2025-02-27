@@ -92,13 +92,11 @@
   
             <!-- Plant Id Column -->
             <td>
-              <ng-container *ngIf="!item.value.isEditing; else editPlantId">
+              <ng-container>
                 {{ item.value.plantId }}
               </ng-container>
-              <ng-template #editPlantId>
-                <input type="text" class="form-control form-control-sm" [(ngModel)]="item.value.plantId">
-              </ng-template>
             </td>
+            
   
             <!-- Plant Name Column -->
             <td>
@@ -138,7 +136,7 @@
               <button *ngIf="item.value.isEditing" (click)="saveRow(item.key)" class="btn btn-sm btn-success">
                 Save
               </button>
-              <button (click)="DeleteRow(item.key)" class="btn btn-sm btn-success">
+              <button (click)="DeleteRow(item.key)" class="btn btn-sm btn-success ms-1">
               Delete
               </button>
             </td>
@@ -148,10 +146,7 @@
     </div>
   </div>
   
- </div>
-  
-  
-  
+</div>
 <!-- </div> -->
 
 
