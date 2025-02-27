@@ -18,6 +18,7 @@
               <div *ngIf="f['username'].invalid && (f['username'].dirty || submitted)" class="text-danger">
                 <small *ngIf="f['username'].errors?.['required']">Username is required</small>
                 <small *ngIf="f['username'].errors?.['minlength']">At least 3 characters required</small>
+                <small *ngIf="f['username'].errors?.['maxlength']">Maximum 20 characters allowed</small>
                 <small *ngIf="f['username'].errors?.['pattern']">Only alphanumeric characters allowed</small>
               </div>
 

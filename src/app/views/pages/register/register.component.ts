@@ -11,6 +11,7 @@ import {
   InputGroupComponent, InputGroupTextDirective, ButtonDirective
 } from '@coreui/angular';
 import { emailDomainValidator } from '../../../validator/custom-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -25,9 +26,9 @@ export class RegisterComponent {
   submitted = false;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder,private authService: RegisterService) {
+  constructor(private fb: FormBuilder,private authService: RegisterService,private router: Router) {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z0-9]+$')]],
+      username: ['', [Validators.required, Validators.minLength(3),  Validators.maxLength(20),Validators.pattern('^[a-zA-Z0-9]+$')]],
       userRole: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, emailDomainValidator(['com', 'org', 'net'])]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -57,12 +58,15 @@ export class RegisterComponent {
         console.log('Registration successful', response);
         this.registerForm.reset();
         this.submitted = false;
+        this.router.navigate(['/login']);
       },
       error => {
         alert('Registration failed!');
         console.error('Registration failed', error);
         this.errorMessage = 'Registration failed. Please try again later.';
       }
+     
     );
+
   }
 }  
