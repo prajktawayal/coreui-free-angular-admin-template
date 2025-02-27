@@ -184,11 +184,6 @@ export class PlantMasterComponent implements OnInit {
     });
     
   }
-  
-  
-
- 
-  
   get PlantId() { return this.plantForm.get('plantid'); }
   get PlantName() { return this.plantForm.get('plantname'); }
   get FactoryId() { return this.plantForm.get('factoryid'); }
