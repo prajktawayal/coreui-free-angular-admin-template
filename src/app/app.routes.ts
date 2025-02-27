@@ -78,6 +78,10 @@ export const routes: Routes = [
       {
         path: 'factory-master',
         loadChildren:()=>import('./views/pages/factory-master/routes').then((m) => m.routes)
+      },
+      {
+        path: 'plant-master-form',
+        loadChildren:()=>import('./views/pages/plant-master-form/routes').then((m) => m.routes)
       }
     ]
   },
