@@ -202,6 +202,7 @@ export class PlantMasterFormComponent implements OnInit {
         this.plantMasterList.splice(index, 1);
       },
       error: (error) => {
+        alert('Error while deleting record:');
         console.error('Error deleting record:', error);
       }
     });
