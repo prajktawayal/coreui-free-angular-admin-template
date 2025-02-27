@@ -71,6 +71,7 @@ export const routes: Routes = [
         path: 'factory-master',
         loadChildren:()=>import('./views/pages/factory-master/routes').then((m) => m.routes)
       }
+     
     ]
   },
   {
