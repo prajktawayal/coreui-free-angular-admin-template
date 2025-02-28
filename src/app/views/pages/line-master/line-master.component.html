@@ -8,7 +8,6 @@
                     Line Information
                 </h4>
             </div>
-
             <!-- Button with improved color -->
             <button (click)="toggleLineMaster()" cButton class="ms-3 mt-3 btn btn-primary fw-bold"
                 style="border-radius: 5px;">
@@ -16,7 +15,7 @@
             </button>
         </div>
     </div>
-      
+     
     <!-- Modal for Line Master Form -->
     <c-modal #verticallyCenteredModal alignment="center" id="lineMasterModal" [visible]="visible"
         (visibleChange)="handleLivePlantChange($event)">
@@ -60,10 +59,10 @@
 
                 <!-- Factory ID -->
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="FactoryId" formControlName="FactoryId"
+                    <input type="text" class="form-control" id="Factory" formControlName="Factory"
                         placeholder="Factory ID" />
                     <label for="FactoryId">Factory ID</label>
-                    <div *ngIf="lineForm.controls['FactoryId']?.invalid && lineForm.controls['FactoryId']?.touched"
+                    <div *ngIf="lineForm.controls['Factory']?.invalid && lineForm.controls['Factory']?.touched"
                         class="text-danger mt-1">
                         Factory ID is required
                     </div>

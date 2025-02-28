@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { LineService } from 'src/app/services/line.service';
+import { LineService } from '../../../services/line.service';
 import { FormsModule } from '@angular/forms';
 import {
   ButtonCloseDirective,
@@ -69,7 +69,7 @@ export class LineMasterComponent implements OnInit {
       LineId: ['', Validators.required],
       NoOfLines: ['', Validators.required],
       PlantId: ['', Validators.required],
-      FactoryId: ['', Validators.required],
+      Factory: ['', Validators.required],
       LineName: ['', Validators.required]
     });
 
@@ -98,19 +98,15 @@ export class LineMasterComponent implements OnInit {
       LineId: this.lineForm.value.LineId?.trim() ? String(this.lineForm.value.LineId) : '',
       NoOfLines: this.lineForm.value.NoOfLines?.trim() ? String(this.lineForm.value.NoOfLines) : '',
       PlantId: this.lineForm.value.PlantId?.trim() ? String(this.lineForm.value.PlantId) : '',
-      FactoryId: this.lineForm.value.FactoryId?.trim() ? String(this.lineForm.value.FactoryId) : '',
+      Factory: this.lineForm.value.FactoryId?.trim() ? String(this.lineForm.value.Factory) : '',
       LineName: this.lineForm.value.LineName?.trim() ? String(this.lineForm.value.LineName) : ''
     };
 
     console.log("Submitting data:", lineMasterData);
 
-    const confirmSave = window.confirm("Do you really want to Save this data?");
-    if (!confirmSave) {
-      return; // Exit if the user cancels
-    }
-
     this.lineService.SaveLineMaster(lineMasterData).subscribe({
       next: (res: any) => {
+        console.log("error");
         console.log('API Response:', res);
         if (res.message === 'Line Data added successfully!') {
           this.displayedMsg = "Data inserted successfully";
@@ -127,7 +123,7 @@ export class LineMasterComponent implements OnInit {
           this.displayedMsg = "Something went wrong";
         }
       },
-      error: (err) => {
+       error: (err) => {
         console.error("API Error:", err);
         this.displayedMsg = "Error occurred while saving data";
       }
@@ -146,7 +142,8 @@ export class LineMasterComponent implements OnInit {
             isEditing: false
           }));
           this.displayedMsg = this.lineMasterList.length > 0 ? "" : "No data available";
-        } else {
+        } 
+        else {
           console.error("Unexpected API response format:", res);
           this.displayedMsg = "Invalid response from server";
         }
