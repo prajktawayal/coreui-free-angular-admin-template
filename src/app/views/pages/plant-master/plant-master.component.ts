@@ -272,10 +272,7 @@ this.authService.updatePlantMaster(payload).subscribe({
     
     
   }
-<<<<<<< HEAD
-=======
  
->>>>>>> dd821388463a8e56513b3c79ed819c77ad0d4073
   get PlantId() { return this.plantForm.get('plantid'); }
   get PlantName() { return this.plantForm.get('plantname'); }
   get FactoryId() { return this.plantForm.get('factoryid'); }
