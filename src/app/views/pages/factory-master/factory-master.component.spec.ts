@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { factoryMasterComponent } from './factory-master.component';
 
-describe('factoryMasterComponent', () => {
+describe('FactoryMasterComponent', () => {
   let component: factoryMasterComponent;
   let fixture: ComponentFixture<factoryMasterComponent>;
 

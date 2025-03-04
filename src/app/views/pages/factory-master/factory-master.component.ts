@@ -1,48 +1,240 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FactoryService}from '../../../services/factory.service';
+import { FormsModule } from '@angular/forms';
+import {
+  ButtonCloseDirective,
+  ButtonDirective,
+  ModalBodyComponent,
+  ModalComponent,
+  ModalFooterComponent,
+  ModalHeaderComponent,
+  ModalTitleDirective,
+  ThemeDirective
+} from '@coreui/angular';
+
+interface FactoryMasterRecord {
+  factoryid: string;
+  factoryname: string;
+  address: string;
+  contact: string;
+  isEditing?: boolean;
+
+}
+
 
 @Component({
   selector: 'app-factory-master',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], 
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonCloseDirective,
+    ButtonDirective,
+    ModalBodyComponent,
+    ModalComponent,
+    ModalFooterComponent,
+    ModalHeaderComponent,
+    ModalTitleDirective,
+    ThemeDirective
+  ],
   templateUrl: './factory-master.component.html',
   styleUrls: ['./factory-master.component.css']
 })
+
 export class factoryMasterComponent implements OnInit {
-  displayedMsg: string = '';
-  isAlready: boolean = false;
-  factoryForm!: FormGroup;
+  public visible = false;
 
-  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.factoryForm = this.fb.group({
-      factoryid: ['', Validators.required],
-      factoryname: [''],
-      address: [''],
-      contact: ['']
-    });
+  toggleFactoryMaster() {
+    this.visible = !this.visible;
   }
-  
-  factoryFormSubmit() {
+
+  handleLivePlantChange(event: any) {
+    this.visible = event;
+  }
+
+
+  isFormVisible: boolean = false;
+      displayedMsg: string = '';
+      isAlready: boolean = false;
+      factoryForm!: FormGroup;
+    
+      isModalOpen: boolean = false;
+      FactoryMasterList: FactoryMasterRecord[] = [];
+    
+      constructor(private fb: FormBuilder, private FactoryService:FactoryService) {}
+
+      ngOnInit(): void {
+        console.log("Initializing component..."); // Debugging log
+        this.factoryForm = this.fb.group({
+          factoryid: ['', Validators.required],
+          factoryname: ['', Validators.required],
+          address: ['', Validators.required],
+          contact: ['', Validators.required],
+        });
+      
+        this.getData(); // Ensure this is being called
+      }
+      
+  toggleForm(): void {
+    // Optional: if you want to toggle an inline form.
+    this.isFormVisible = !this.isFormVisible;
+
+  }
+
+  toggleModal(): void {
+    this.isModalOpen = !this.isModalOpen;
+    console.log('Modal open:', this.isModalOpen);
+    
+  }
+  FactoryFormSubmit() {
     if (this.factoryForm.invalid) {
       console.warn("Form is invalid", this.factoryForm.value);
       return;
     }
-  
-    const factoryMasterData = {
-      factoryId: String(this.factoryForm.value.factoryid ?? ''),
-      factoryName: String(this.factoryForm.value.factoryname ?? ''),
-      address: String(this.factoryForm.value.factoryid ?? ''),
-      contact: String(this.factoryForm.value.factorynumber ?? '')
-    };
-  
-    console.log("Submitting data:", factoryMasterData);
 
+    const FactoryMasterData = {
+      factoryid: this.factoryForm.value.factoryid?.trim() ? String(this.factoryForm.value.factoryid) : '',
+      factoryname: this.factoryForm.value.factoryname?.trim() ? String(this.factoryForm.value.factoryname) : '',
+      address: this.factoryForm.value.address?.trim() ? String(this.factoryForm.value.address) : '',
+      contact: this.factoryForm.value.contact?.trim() ? String(this.factoryForm.value.contact) : '',
+       };
+
+
+    console.log("Submitting data:", FactoryMasterData);
+    const confirmSave = window.confirm("Do you really want to Save this data?");
+    if (!confirmSave) {
+    return; // Exit if the user cancels
   }
-  get factoryId() { return this.factoryForm.get('factoryid'); }
-  get factoryName() { return this.factoryForm.get('factoryname'); }
-  get FactoryId() { return this.factoryForm.get('address'); }
-  get factoryNumber() { return this.factoryForm.get('contact'); }
+
+
+  this.FactoryService.SaveFactoryMaster(FactoryMasterData).subscribe({
+    next: (res: any) => {
+      console.log('API Response:', res);
+      if (res.message === 'Factory Data added successfully!') {
+        this.displayedMsg = "Data inserted successfully";
+        alert("Data Inserted Successfully");
+        this.factoryForm.reset();
+        this.getData();
+        // Hide the form after submission
+        this.isModalOpen = false;
+        setTimeout(() => {
+          this.displayedMsg = '';
+        }, 3000);
+      } else if (res.message === 'isalready') {
+        this.displayedMsg = "Already Data Exist";
+      } else {
+        this.displayedMsg = "Something went wrong";
+      }
+    },
+    error: (err) => {
+      console.error("API Error:", err);
+      this.displayedMsg = "Error occurred while saving data";
+    }
+  });
 }
+
+
+
+getData() {
+  console.log("Fetching data...");
+  this.FactoryService.getFactoryMaster().subscribe({
+    next: (res: { success: boolean; message: string; data: any[] }) => {
+      console.log('API Response:', JSON.stringify(res, null, 2));
+
+      if (res && res.success && Array.isArray(res.data)) {
+        // Map the API response to match the expected structure
+        this.FactoryMasterList = res.data.map(record => ({
+          factoryid: record.factoryid,        // Fix camelCase to PascalCase
+          factoryname: record.factoryname,
+          address: record.address,
+          contact: record.contact,
+        
+          isEditing: false
+        }));
+
+        console.log("Processed Data:", this.FactoryMasterList); // Log mapped data
+        this.displayedMsg = this.FactoryMasterList.length > 0 ? "" : "No data available";
+      } else {
+        console.error("Unexpected API response format:", res);
+        this.displayedMsg = "Invalid response from server";
+      }
+    },
+    error: (err) => {
+      console.error("API Error:", JSON.stringify(err, null, 2));
+      this.displayedMsg = "Error occurred while fetching data";
+    }
+  });
+}
+
+editRow(index: number) {
+  this.FactoryMasterList[index].isEditing = true;
+}
+
+saveRow(index: number) {
+  const updatedRecord = this.FactoryMasterList[index];
+  const payload = {
+    factoryid: updatedRecord.factoryid,
+    factoryname: updatedRecord.factoryname,
+    address: updatedRecord.address,
+    contact: updatedRecord.contact,
+   
+  };
+
+
+
+  console.log('Calling updateFactoryMaster with payload:', payload);
+    const isValid = Object.values(payload).every(value => value !== null && value !== '' && value !== undefined);
+
+    if (!isValid) {
+      alert("Please fill data properly");
+      return; // Exit the function if data is invalid
+    }
+    const confirmUpdate = window.confirm("Do you really want to Update this data?");
+    if (!confirmUpdate) {
+      return; // Exit if the user cancels
+    }
+    this.FactoryService.updateFactoryMaster(payload).subscribe({
+      next: (response) => {
+        console.log('Record updated successfully:', response);
+        updatedRecord.isEditing = false;
+      },
+      error: (error) => {
+        console.error('Error updating record:', error);
+      }
+    });
+  }
+
+
+DeleteRow(index: number) {
+  const deleteRecord = this.FactoryMasterList[index];
+  if (!deleteRecord || !deleteRecord.factoryid) {
+    console.warn('Invalid record:', deleteRecord);
+    return;
+  }
+  console.log('Calling deleteLineMaster with:', deleteRecord.factoryid);
+  const confirmDelete = window.confirm("Do you really want to delete this data?");
+  if (!confirmDelete) {
+    return; // Exit if the user cancels
+}
+  this.FactoryService.deleteFactoryMaster(deleteRecord.factoryid).subscribe({
+    next: (response) => {
+      console.log('Record deleted successfully:', response);
+      this.FactoryMasterList.splice(index, 1);
+    },
+    error: (error) => {
+      alert('Error while deleting record:');
+      console.error('Error deleting record:', error);
+    }
+  });
+}
+
+get factoryid() { return this.factoryForm.get('factoryid'); }
+  get factoryname() { return this.factoryForm.get('factoryname'); }
+  get address() { return this.factoryForm.get('address'); }
+  get contact() { return this.factoryForm.get('contact'); }
+}
+  

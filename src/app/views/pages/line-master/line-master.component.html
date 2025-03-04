@@ -9,15 +9,18 @@
                 </h4>
             </div>
             <!-- Button with improved color -->
-            <button (click)="toggleLineMaster()" cButton class="ms-3 mt-3 btn btn-primary fw-bold"
+            <button 
+            (click)="toggleLineMaster()"
+            cButton
+            class="ms-3 mt-3 btn btn-secondary fw-bold"
                 style="border-radius: 5px;">
                 Add Line Master Data
             </button>
         </div>
-    </div>
+   
      
     <!-- Modal for Line Master Form -->
-    <c-modal #verticallyCenteredModal alignment="center" id="lineMasterModal" [visible]="visible"
+  <c-modal #verticallyCenteredModal alignment="center" id="lineMasterModal" [visible]="visible"
         (visibleChange)="handleLivePlantChange($event)">
         <c-modal-header style="background-color: #8a3cf1;">
             <h5 cModalTitle style="color:white">Line Master Form</h5>
@@ -28,7 +31,10 @@
             <form [formGroup]="lineForm" (ngSubmit)="lineFormSubmit()">
                 <!-- Line ID -->
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="LineId" formControlName="LineId" placeholder="Line ID" />
+                    <input 
+                    type="text" class="form-control"
+                     id="LineId" formControlName="LineId" placeholder="Line ID" 
+                     />
                     <label for="LineId">Line ID</label>
                     <div *ngIf="lineForm.controls['LineId']?.invalid && lineForm.controls['LineId']?.touched"
                         class="text-danger mt-1">
@@ -61,7 +67,7 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="Factory" formControlName="Factory"
                         placeholder="Factory ID" />
-                    <label for="FactoryId">Factory ID</label>
+                    <label for="Factory">Factory ID</label>
                     <div *ngIf="lineForm.controls['Factory']?.invalid && lineForm.controls['Factory']?.touched"
                         class="text-danger mt-1">
                         Factory ID is required
@@ -92,44 +98,81 @@
         </c-modal-footer>
     </c-modal>
 
+
+
     <!-- Grid Data Container -->
     <div class="grid-data-container">
-        <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
-            <table class="table table-bordered table-hover table-striped align-middle">
-                <thead class="text-white text-center" style="background-color: #2C3E50;">
-                    <tr>
-                        <th scope="col">Row Id</th>
-                        <th scope="col">Line ID</th>
-                        <th scope="col">Number of Lines</th>
-                        <th scope="col">Plant ID</th>
-                        <th scope="col">Factory ID</th>
-                        <th scope="col">Line Name</th>
-                        <th scope="col">Actions</th>
-                    </tr>
+    <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+      <table class="table table-bordered table-hover table-striped align-middle">
+        <thead class="bg-dark text-white text-center">
+          <tr>
+                        <th scope="col" style="background-color: #a1bcce ;">Line ID</th>
+                        <th scope="col"style="background-color: #a1bcce ;">Number of Lines</th>
+                        <th scope="col"style="background-color: #a1bcce ;">Plant ID</th>
+                        <th scope="col"style="background-color: #a1bcce ;">Factory ID</th>
+                        <th scope="col"style="background-color: #a1bcce ;">Line Name</th>
+                        <th scope="col" style="background-color: #a1bcce ;">Actions</th>
+                      </tr>
                 </thead>
+
                 <tbody class="text-center">
-                    <tr *ngFor="let item of lineMasterList; let i = index"
-                        [style.backgroundColor]="i % 2 === 0 ? '#F2F6FC' : '#E9EEF4'">
-                        <td class="fw-bold">{{ i + 1 }}</td>
-                        <td>{{ item.LineId }}</td>
-                        <td>{{ item.NoOfLines }}</td>
-                        <td>{{ item.PlantId }}</td>
-                        <td>{{ item.FactoryId }}</td>
-                        <td>{{ item.LineName }}</td>
-                        <td>
-                            <button *ngIf="!item.isEditing" (click)="editRow(i)" class="btn btn-sm btn-warning text-white">
-                                Edit
-                            </button>
-                            <button *ngIf="item.isEditing" (click)="saveRow(i)" class="btn btn-sm btn-success">
-                                Save
-                            </button>
-                            <button (click)="DeleteRow(i)" class="btn btn-sm btn-danger">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+                  <tr *ngFor="let item of lineMasterList; let i = index">
+                    <td class="fw-bold">{{ item.LineId }}</td>
+
+                    <td>
+                      <ng-container *ngIf="!item.isEditing; else editNoOfLines">
+                        {{ item.NoOfLines }}
+                      </ng-container>
+                      <ng-template #editNoOfLines>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="item.NoOfLines">
+                      </ng-template>
+                    </td>
+
+
+                    <td>
+                      <ng-container *ngIf="!item.isEditing; else editPlantId">
+                        {{ item.PlantId }}
+                      </ng-container>
+                      <ng-template #editPlantId>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="item.PlantId">
+                      </ng-template>
+                    </td>
+
+
+                    <td>
+                      <ng-container *ngIf="!item.isEditing; else editFactory">
+                        {{ item.Factory }}
+                      </ng-container>
+                      <ng-template #editFactory>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="item.Factory">
+                      </ng-template>
+                    </td>
+
+                    <td>
+                      <ng-container *ngIf="!item.isEditing; else editLineName">
+                        {{ item.LineName }}
+                      </ng-container>
+                      <ng-template #editLineName>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="item.LineName">
+                      </ng-template>
+                    </td>
+
+
+                    <td>
+                      <button *ngIf="!item.isEditing" (click)="editRow(i)" class="btn btn-sm btn-secondary m-2">
+                        Edit
+                      </button>
+                      <button *ngIf="item.isEditing" (click)="saveRow(i)" class="btn btn-sm btn-success">
+                        Save
+                      </button>
+                      <button (click)="DeleteRow(i)" class="btn btn-sm btn-danger">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+              </table>
+            </div>
+          </div>
+          </div>
+          

@@ -1,52 +1,169 @@
-<div class="container d-flex justify-content-center align-items-center mt-5" >
-    <div class="card p-4 shadow" style="max-width: 400px; width: 100%; border-radius: 10px;">
-        <div class="text-center mb-3 form-control rounded-left " style=" background-color: #f0f8ff;">
-            <h4 class="mt-2">factory Master</h4></div>
-        <div class="text-center mb-3">
-           
-              
-    <form [formGroup]="factoryForm" (ngSubmit)="factoryFormSubmit()">  
-       
-        <div class="mb-3">
-            <label for="factoryid" class="form-label">Factory Id</label>
-            <input type="text"  class="form-control rounded-pill" id="factoryid" formControlName="factoryid">
-            <div *ngIf="factoryId?.invalid && factoryId?.touched" class="text-danger">
-                factory ID is required
+
+    <!-- Header with toggle button -->
+    <div class="text-center mb-3 form-control rounded"
+        style="background: linear-gradient(to right, #4A90E2, #28048a); color: white; font-weight: bold; padding: 15px;">
+        <div class="d-flex align-items-center">
+            <div class="flex-grow-1 text-center">
+                <h4 class="mt-2 fw-bold mb-0" style="font-weight: bolder; font-style: italic; font-size: xx-large;">
+                  Factory Information
+                </h4>
             </div>
+
+            <button 
+            (click)="toggleFactoryMaster()"
+            cButton
+            class="ms-3 mt-3 btn btn-secondary fw-bold"
+                style="border-radius: 5px;">
+                Add Factory Details 
+            </button>
         </div>
 
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="factoryname" class="form-label">Factory Name</label>
-                <input type="text" class="form-control rounded-pill" id="factoryname" formControlName="factoryname">
-            </div>  
-        </div>
+        <c-modal #verticallyCenteredModal alignment="center" id="FactoryMasterModal" [visible]="visible"
+        (visibleChange)="handleLivePlantChange($event)">
+        <c-modal-header style="background-color: #8a3cf1;">
+            <h5 cModalTitle style="color:white">Factory Master Form</h5>
+            <button (click)="toggleFactoryMaster()" cButtonClose></button>
+        </c-modal-header>
 
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="address" class="form-label">Factory Address</label>
-                <input type="text" class="form-control rounded-pill" id="address" formControlName="address">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="contact" class="form-label">factory contact</label>
-                <input type="text" class="form-control rounded-pill" id="contact" formControlName="contact">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-6 offset-3">
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-dark rounded-pill" [disabled]="factoryForm.invalid">Submit</button>
+        <c-modal-body>
+            <form [formGroup]="factoryForm" (ngSubmit)="FactoryFormSubmit()">
+                
+                <!-- Factory ID -->
+                <div class="form-floating mb-3">
+                    <input 
+                    type="text" class="form-control"
+                     id="factoryid" formControlName="factoryid" placeholder="Factory ID" 
+                     />
+                    <label for="factoryid">Factory ID</label>
+                    <div *ngIf="factoryForm.controls['factoryid']?.invalid && factoryForm.controls['factoryid']?.touched"
+                        class="text-danger mt-1">
+                        Factory ID is required
+                    </div>
                 </div>
-            </div>
-        </div>
 
-    </form>
-</div>
-</div>  
-</div>
+                  <!-- Factory Name -->
+                  <div class="form-floating mb-3">
+                    <input 
+                    type="text" class="form-control"
+                     id="factoryname" formControlName="factoryname" placeholder="Factory Name" 
+                     />
+                    <label for="factoryname">Factory Name</label>
+                    <div *ngIf="factoryForm.controls['factoryname']?.invalid && factoryForm.controls['factoryname']?.touched"
+                        class="text-danger mt-1">
+                        Factory Name is required
+                    </div>
+                </div>
+
+                 <!-- Factory Address -->
+                 <div class="form-floating mb-3">
+                    <input 
+                    type="text" class="form-control"
+                     id="address" formControlName="address" placeholder="Factory Address" 
+                     />
+                    <label for="address">Factory Address</label>
+                    <div *ngIf="factoryForm.controls['address']?.invalid && factoryForm.controls['address']?.touched"
+                        class="text-danger mt-1">
+                        Factory Address is required
+                    </div>
+                </div>
+
+                 <!-- Factory contact  -->
+                 <div class="form-floating mb-3">
+                    <input 
+                    type="text" class="form-control"
+                     id="contact" formControlName="contact" placeholder="Factory Contact " 
+                     />
+                    <label for="contact">Factory Contact</label>
+                    <div *ngIf="factoryForm.controls['contact']?.invalid && factoryForm.controls['contact']?.touched"
+                        class="text-danger mt-1">
+                        Factory Contact is required
+                    </div>
+                </div>
+            </form>
+        </c-modal-body>
+
+
+
+         <!-- Modal Footer -->
+         <c-modal-footer>
+            <button (click)="toggleFactoryMaster()" cButton color="secondary" class="btn btn-secondary btn-lg fw-bold">
+                Close
+            </button>
+            <button type="submit" class="btn btn-primary btn-lg fw-bold" [disabled]="factoryForm.invalid"
+                (click)="FactoryFormSubmit()">
+                Submit
+            </button>
+        </c-modal-footer>
+    </c-modal>
+
+
+
+    <!-- Grid Data Container -->
+    <div class="grid-data-container">
+        <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+          <table class="table table-bordered table-hover table-striped align-middle">
+            <thead class="bg-dark text-white text-center">
+              <tr>
+                            <th scope="col" style="background-color: #a1bcce ;">Factory ID</th>
+                            <th scope="col"style="background-color: #a1bcce ;">Factory Name</th>
+                            <th scope="col"style="background-color: #a1bcce ;">Factory Address</th>
+                            <th scope="col"style="background-color: #a1bcce ;">Factory Contact</th>
+                            <th scope="col"style="background-color: #a1bcce ;">Factory Logo</th>
+                            <th scope="col" style="background-color: #a1bcce ;">Actions</th>
+                </tr>
+            </thead>
+
+
+            <tbody class="text-center">
+                <tr *ngFor="let item of FactoryMasterList; let i = index">
+                  <td class="fw-bold">{{ item.factoryid }}</td>
+
+
+
+                  <td>
+                    <ng-container *ngIf="!item.isEditing; else editfactoryname">
+                      {{ item.factoryname }}
+                    </ng-container>
+                    <ng-template #editfactoryname>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.factoryname">
+                    </ng-template>
+                  </td>
+
+                  <td>
+                    <ng-container *ngIf="!item.isEditing; else editfactoryaddress">
+                      {{ item.address }}
+                    </ng-container>
+                    <ng-template #editfactoryaddress>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.address">
+                    </ng-template>
+                  </td>
+
+                  <td>
+                    <ng-container *ngIf="!item.isEditing; else editfactorycontact">
+                      {{ item.contact }}
+                    </ng-container>
+                    <ng-template #editfactorycontact>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.contact">
+                    </ng-template>
+                  </td>
+                     
+                  <td>
+                    <button *ngIf="!item.isEditing" (click)="editRow(i)" class="btn btn-sm btn-secondary m-2">
+                      Edit
+                    </button>
+                    <button *ngIf="item.isEditing" (click)="saveRow(i)" class="btn btn-sm btn-success">
+                      Save
+                    </button>
+                    <button (click)="DeleteRow(i)" class="btn btn-sm btn-danger">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+        
 
 
