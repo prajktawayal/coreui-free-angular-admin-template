@@ -1,22 +1,15 @@
-<c-row class="g-4">
-    <c-col xs="12" lg="6">
-        <c-card class="mb-4">
-          <c-card-header>
-            Bar Chart
-          </c-card-header>
-          <c-card-body>
-            <c-chart type="bar" [data]="chartBarData" [options]="options" />
-          </c-card-body>
-        </c-card>
-      </c-col>
-    <c-col xs="12" lg="6">
-        <c-card class="mb-4">
-          <c-card-header>
-            Line Chart
-          </c-card-header>
-          <c-card-body>
-            <c-chart type="line" [data]="chartLineData" [options]="options" />
-          </c-card-body>
-        </c-card>
-      </c-col>
+<c-row class="g-4" style="background-color: white;">
+  <c-col xs="12" lg="8" style="margin-left:30px;">
+    <c-card class="mb-8">
+      <c-card-header>Performance Dashboard</c-card-header>
+      <c-card-body>
+        <c-chart type="bar" [data]="chartBarData" [options]="options" />
+      </c-card-body>
+    </c-card>
+  </c-col>
+
+  <c-col xs="12" lg="3" style="margin-left: 30px; display: flex; justify-content: center; align-items: center; height: 200px;">
+    <c-widget-stat-a color="primary" [title]="'EMS Malanpur'" class="parrot-green-widget">
+    </c-widget-stat-a>
+  </c-col>
 </c-row>
