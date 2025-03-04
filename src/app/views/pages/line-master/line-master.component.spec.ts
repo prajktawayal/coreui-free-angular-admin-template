@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LineMasterComponent} from './line-master.component';
 
-import { lineMasterComponent } from './line-master.component';
-
-describe('lineMasterComponent', () => {
-  let component: lineMasterComponent;
-  let fixture: ComponentFixture<lineMasterComponent>;
+describe('LineMasterComponent', () => {
+  let component: LineMasterComponent;
+  let fixture: ComponentFixture<LineMasterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [lineMasterComponent]
+      declarations: [LineMasterComponent] // Use declarations instead of imports
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(lineMasterComponent);
+    fixture = TestBed.createComponent(LineMasterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

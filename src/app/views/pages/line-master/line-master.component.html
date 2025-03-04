@@ -1,73 +1,135 @@
-<div class="container d-flex justify-content-center align-items-center mt-5" >
-    <div class="card p-4 shadow" style="max-width: 400px; width: 100%; border-radius: 10px;">
-        <div class="text-center mb-3 form-control rounded-left " style=" background-color: #f0f8ff;">
-            <h4 class="mt-2">line Master</h4></div>
-        <div class="text-center mb-3">
-           
-            
-    <form [formGroup]="lineForm" (ngSubmit)="lineFormSubmit()">  
-       
-        <div class="mb-3">
-            <label for="LineId" class="form-label">line Id</label>
-            <input type="text"  class="form-control rounded-pill" id="LineId" formControlName="LineId">
-            <div *ngIf="lineId?.invalid && lineId?.touched" class="text-danger">
-                line ID is required
+<div class="col p-4 shadow align-items-left ms-1 mt-2 rounded" style="background-color: #F8F9FA;">
+    <!-- Header with toggle button -->
+    <div class="text-center mb-3 form-control rounded"
+        style="background: linear-gradient(to right, #4A90E2, #28048a); color: white; font-weight: bold; padding: 15px;">
+        <div class="d-flex align-items-center">
+            <div class="flex-grow-1 text-center">
+                <h4 class="mt-2 fw-bold mb-0" style="font-weight: bolder; font-style: italic; font-size: xx-large;">
+                    Line Information
+                </h4>
             </div>
+            <!-- Button with improved color -->
+            <button (click)="toggleLineMaster()" cButton class="ms-3 mt-3 btn btn-primary fw-bold"
+                style="border-radius: 5px;">
+                Add Line Master Data
+            </button>
         </div>
+    </div>
+     
+    <!-- Modal for Line Master Form -->
+    <c-modal #verticallyCenteredModal alignment="center" id="lineMasterModal" [visible]="visible"
+        (visibleChange)="handleLivePlantChange($event)">
+        <c-modal-header style="background-color: #8a3cf1;">
+            <h5 cModalTitle style="color:white">Line Master Form</h5>
+            <button (click)="toggleLineMaster()" cButtonClose></button>
+        </c-modal-header>
 
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="NoOfLines" class="form-label">Number of Lines</label>
-                <input type="text" class="form-control rounded-pill" id="NoOfLines" formControlName="NoOfLines">
-            </div>
-            <div *ngIf="lineNumber?.invalid && lineNumber?.touched" class="text-danger">
-                Line Number is required
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="PlantId" class="form-label">Plant ID</label>
-                <input type="text" class="form-control rounded-pill" id="PlantId" formControlName="PlantId">
-            </div>
-            <div *ngIf="plantId?.invalid && plantId?.touched" class="text-danger">
-                plant ID is required
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="Factory" class="form-label">Factory Id</label>
-                <input type="text" class="form-control rounded-pill" id="Factory" formControlName="Factory">
-            </div>
-            <div *ngIf="FactoryId?.invalid && FactoryId?.touched" class="text-danger">
-                factory ID is required
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col mb-3 p-2">
-                <label for="LineName" class="form-label">line Name</label>
-                <input type="text" class="form-control rounded-pill" id="LineName" formControlName="LineName">
-            </div>
-            <div *ngIf="lineName?.invalid && lineName?.touched" class="text-danger">
-                Line Name is required
-            </div>
-        </div>
-
-        
-        <div class="row mb-3">
-            <div class="col-6 offset-3">
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-dark rounded-pill" [disabled]="lineForm.invalid">Submit</button>
+        <c-modal-body>
+            <form [formGroup]="lineForm" (ngSubmit)="lineFormSubmit()">
+                <!-- Line ID -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="LineId" formControlName="LineId" placeholder="Line ID" />
+                    <label for="LineId">Line ID</label>
+                    <div *ngIf="lineForm.controls['LineId']?.invalid && lineForm.controls['LineId']?.touched"
+                        class="text-danger mt-1">
+                        Line ID is required
+                    </div>
                 </div>
-            </div>
+
+                <!-- Number of Lines -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="NoOfLines" formControlName="NoOfLines"
+                        placeholder="Number of Lines" />
+                    <label for="NoOfLines">Number of Lines</label>
+                    <div *ngIf="lineForm.controls['NoOfLines']?.invalid && lineForm.controls['NoOfLines']?.touched"
+                        class="text-danger mt-1">
+                        Number of Lines is required
+                    </div>
+                </div>
+
+                <!-- Plant ID -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="PlantId" formControlName="PlantId" placeholder="Plant ID" />
+                    <label for="PlantId">Plant ID</label>
+                    <div *ngIf="lineForm.controls['PlantId']?.invalid && lineForm.controls['PlantId']?.touched"
+                        class="text-danger mt-1">
+                        Plant ID is required
+                    </div>
+                </div>
+
+                <!-- Factory ID -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Factory" formControlName="Factory"
+                        placeholder="Factory ID" />
+                    <label for="FactoryId">Factory ID</label>
+                    <div *ngIf="lineForm.controls['Factory']?.invalid && lineForm.controls['Factory']?.touched"
+                        class="text-danger mt-1">
+                        Factory ID is required
+                    </div>
+                </div>
+
+                <!-- Line Name -->
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="LineName" formControlName="LineName" placeholder="Line Name" />
+                    <label for="LineName">Line Name</label>
+                    <div *ngIf="lineForm.controls['LineName']?.invalid && lineForm.controls['LineName']?.touched"
+                        class="text-danger mt-1">
+                        Line Name is required
+                    </div>
+                </div>
+            </form>
+        </c-modal-body>
+
+        <!-- Modal Footer -->
+        <c-modal-footer>
+            <button (click)="toggleLineMaster()" cButton color="secondary" class="btn btn-secondary btn-lg fw-bold">
+                Close
+            </button>
+            <button type="submit" class="btn btn-primary btn-lg fw-bold" [disabled]="lineForm.invalid"
+                (click)="lineFormSubmit()">
+                Submit
+            </button>
+        </c-modal-footer>
+    </c-modal>
+
+    <!-- Grid Data Container -->
+    <div class="grid-data-container">
+        <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+            <table class="table table-bordered table-hover table-striped align-middle">
+                <thead class="text-white text-center" style="background-color: #2C3E50;">
+                    <tr>
+                        <th scope="col">Row Id</th>
+                        <th scope="col">Line ID</th>
+                        <th scope="col">Number of Lines</th>
+                        <th scope="col">Plant ID</th>
+                        <th scope="col">Factory ID</th>
+                        <th scope="col">Line Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let item of lineMasterList; let i = index"
+                        [style.backgroundColor]="i % 2 === 0 ? '#F2F6FC' : '#E9EEF4'">
+                        <td class="fw-bold">{{ i + 1 }}</td>
+                        <td>{{ item.LineId }}</td>
+                        <td>{{ item.NoOfLines }}</td>
+                        <td>{{ item.PlantId }}</td>
+                        <td>{{ item.FactoryId }}</td>
+                        <td>{{ item.LineName }}</td>
+                        <td>
+                            <button *ngIf="!item.isEditing" (click)="editRow(i)" class="btn btn-sm btn-warning text-white">
+                                Edit
+                            </button>
+                            <button *ngIf="item.isEditing" (click)="saveRow(i)" class="btn btn-sm btn-success">
+                                Save
+                            </button>
+                            <button (click)="DeleteRow(i)" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-
-    </form>
+    </div>
 </div>
-</div>  
-</div>
-
-

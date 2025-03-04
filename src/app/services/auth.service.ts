@@ -18,8 +18,9 @@ export class AuthService {
   getPlantMaster(): Observable<any> {
     return this.http.get<any>(`${this.baseserverurl}PlantMaster/AllPlantMaster`);
   }
+  
   updatePlantMaster(payload: { PlantId: string; plantName: string; FactoryId: string; Plantnumber: string }) {
-    return this.http.post<{ message: string }>(`${this.baseserverurl}PlantMaster/UpdatePlantMaster`, payload);
+    return this.http.post<{ message: string }>(`${this.baseserverurl}PlantMaster/UpdatePlantMaster`, payload);    
 }
 
   deletePlantMaster(plantId:string) {

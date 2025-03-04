@@ -32,7 +32,7 @@ export const routes: Routes = [
   },
   {
     path:'line-master',
-    loadComponent: () => import('./line-master/line-master.component').then(m => m.lineMasterComponent),
+    loadComponent: () => import('./line-master/line-master.component').then(m => m.LineMasterComponent),
     data: {
       title: 'Line Master Page'
     }
