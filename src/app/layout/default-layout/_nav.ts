@@ -215,6 +215,12 @@ export const navItems: INavData[] = [
         url:'/plant-master-form',
         icon:'nav-icon-bullet'
       },
+      {
+        name:'Graph',
+        url:'/graph',
+        icon:'nav-icon-bullet'
+      },
+      
      
      
       {

@@ -18,4 +18,5 @@ export class RegisterService {
   getUserData(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+  
 }

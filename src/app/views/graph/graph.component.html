@@ -1,0 +1,319 @@
+<!-- <c-header position="sticky" class="shadow-sm bg-white"> -->
+  <div class="page-container">
+  <c-container fluid class=" px-3 ">
+    <div class="d-flex align-items-center w-100">
+      <!-- Left Section: Logo -->
+      <c-header-brand class="me-3">
+        <img src="assets/images/godrej.png" alt="Logo" height="100" width="100">
+      </c-header-brand>
+
+<!-- Centered Title and Buttons Container -->
+<div class="d-flex flex-column align-items-center w-100">
+<!-- Title -->
+<h4 class="px-2 py-2 rounded-pill text-center fw-bold mb-2 w-100 text-white" 
+    style="background-color: #4882a8;">
+  Energy Monitoring System
+</h4>
+
+<!-- Buttons Section -->
+<div class="d-flex flex-wrap gap-5 justify-content-center ">
+  <button cButton class="border rounded-3 px-4 py-2 btn-lg text-nowrap fw-bold"
+    style="background-color:#a1bcce; color: #071949; font-size: 15px;">MODAR PLANT 1
+    <span cInputGroupText>
+      <svg [cIcon]="icons.cilIndustry" size="xl" title="Shield Icon"></svg>
+    </span></button>
+
+  <button cButton class="border rounded-3 px-4 py-2 btn-lg text-nowrap fw-bold"
+    style="background-color:#a1bcce; color: #071949;font-size: 15px;">MODAR PLANT 2
+    <span cInputGroupText>
+      <svg [cIcon]="icons.cilIndustry" size="xl" title="Shield Icon"></svg>
+    </span></button>
+
+  <button cButton class="border rounded-3 px-4 py-2 btn-lg text-nowrap fw-bold"
+    style="background-color:#a1bcce; color: #071949;font-size: 15px;">SORTEX
+    <span cInputGroupText>
+      <svg [cIcon]="icons.cilIndustry" size="xl" title="Shield Icon"></svg>
+    </span></button>
+
+  <button cButton class="border rounded-3 px-4 py-2 btn-lg text-nowrap fw-bold"
+    style="background-color:#a1bcce; color: #071949;font-size: 15px;">FADA PLANT
+    <span cInputGroupText>
+      <svg [cIcon]="icons.cilIndustry" size="xl" title="Shield Icon"></svg>
+    </span></button>
+
+  <button cButton class="border rounded-3 px-4 py-2 btn-lg text-nowrap fw-bold"
+    style="background-color:#a1bcce; color: #071949;font-size: 15px;">
+    {{ currentDateTime }}
+    <span cInputGroupText>
+      <svg  [cIcon]="icons.cilAlarm" size="xl" title="Shield Icon" ></svg>
+    </span>
+  </button>
+</div>
+</div>
+</div>
+</c-container>
+  <c-container fluid class="py-1 px-1 ">
+      <div class="d-flex align-items-center w-100">
+        <h4 class=" px-2 py-2 rounded-pill text-center fw-bold mb-0 flex-grow-1 " 
+            style="background-color: #bee0f0; color:  #071949;font-size: 18px;">
+        Daily
+        </h4>
+  
+      </div>
+    </c-container>
+  <!-- </c-header> -->
+  <!-- <c-container class="overflow-hidden  "> -->
+    <c-container fluid class="py-1 px-1">
+      <c-row style="margin-left: 10px; margin-right: 10px;margin-top: 1px;">
+
+      <c-col gap-5 lg="3" xs="12" >
+        <c-widget-stat-f
+          [title]="'14.32 kVAH'"
+          value="Energy Consumption"
+          class="mb-0"
+          padding
+          [ngStyle]="{'font-size': '30px','background-color': '#e5e8e8 '}"
+        >
+          <ng-template cTemplateId="widgetIconTemplate">
+           <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg> 
+          </ng-template>
+        </c-widget-stat-f>
+
+      </c-col>
+      <c-col lg="3" xs="12">
+        <c-widget-stat-f
+        [title]="'229.77 kWH'"
+        value="Energy Apparent"
+        class="mb-0"
+        color="warning"
+        padding
+        [ngStyle]="{'font-size': '30px'}"
+      >
+        <ng-template cTemplateId="widgetIconTemplate">
+          <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg> 
+        </ng-template>
+      </c-widget-stat-f>
+      </c-col>
+      <c-col lg="3" xs="12">
+        <c-widget-stat-f
+        [title]="'12.91 kVARH'"
+        value="Energy Reactive"
+        class="mb-0"
+       
+        padding
+        [ngStyle]="{'font-size':'30px','background-color': '#e5e8e8 '}"
+        >
+          <ng-template cTemplateId="widgetIconTemplate">
+            <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+          </ng-template>
+        </c-widget-stat-f>
+      </c-col>
+      <c-col lg="3" xs="12">
+        <c-widget-stat-f
+        [title]="'221.77 kVA'"
+        value="Maximum Demand"
+        class="mb-0"
+        color="warning"
+        padding
+        [ngStyle]="{'font-size': '30px'}"
+        >
+          <ng-template cTemplateId="widgetIconTemplate">
+            <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
+          </ng-template>
+        </c-widget-stat-f>
+      </c-col>
+    </c-row>
+  </c-container>
+
+    <!-- </c-container> -->
+    <c-container fluid class="py-1 px-1">
+      <div class="d-flex align-items-center w-100" >
+        <h4 class=" px-3 py-1 rounded-pill text-center fw-bold mb-0 flex-grow-1" 
+            style="background-color: #bee0f0; color:  #071949;font-size: 18px;">
+        Avarge
+        </h4>
+  
+      </div>
+    </c-container>
+    <c-container fluid class="py-1 px-1">
+    <c-row  style="margin-left: 10px; margin-right: 10px;margin-top: 2px;">
+      <c-col md="12" xl="4">
+        <c-widget-stat-b
+          #widgetStatB1inv="cWidgetStatB"
+          [title]="'PF'"
+          class="mb-1"
+          color="primary"
+          inverse
+        >
+        <span style="font-size: 12px; color: white; display: flex; justify-content: center; align-items: center;">
+         0.59
+        </span>
+          <c-progress [white]="widgetStatB1inv.inverse" class="my-1"  [value]="value()"  style="height: 15px;" /> 
+          <span style="display: flex; justify-content: space-between; width: 100%;">
+            <h6 style="font-size: 12px; color: white;">1</h6>
+            <h6 style="font-size: 12px; color: white;">2</h6>
+          </span>
+        </c-widget-stat-b>
+      </c-col>
+      <c-col md="12" xl="4">
+  <c-widget-stat-b
+    #widgetStatB1inv="cWidgetStatB"
+    [title]="'Voltage'"
+    color="warning"
+    inverse
+  >
+  <span style="font-size: 14px; color: white; display: flex; justify-content: center; align-items: center;">
+  410.0SV
+   </span>
+    <c-progress [white]="widgetStatB1inv.inverse" class="my-1"  [value]="value()" style="height: 15px;"/> 
+    <span style="display: flex; justify-content: space-between; width: 100%;">
+      <h6 style="font-size: 12px; color: white;">1</h6>
+      <h6 style="font-size: 12px; color: white;">2</h6>
+    </span>
+  </c-widget-stat-b>
+      </c-col>
+      <c-col md="12" xl="4">
+  <c-widget-stat-b
+    #widgetStatB1inv="cWidgetStatB"
+    [title]="'Current'"
+    color="primary"
+    inverse
+
+  >
+  <span style="font-size: 14px; color: white; display: flex; justify-content: center; align-items: center;">
+   78.63 Amp
+   </span>
+    <c-progress [white]="widgetStatB1inv.inverse" class="my-1"  [value]="value()" style="height: 15px;"/> 
+    <span style="display: flex; justify-content: space-between; width: 100%;">
+      <h6 style="font-size: 12px; color: white;">1</h6>
+      <h6 style="font-size: 12px; color: white;">2</h6>
+    </span>
+  </c-widget-stat-b>
+     </c-col>
+    </c-row>
+  </c-container>
+    <c-container fluid class="py-2 px-1">
+      <div class="d-flex align-items-center w-100 ">
+        <h4 class=" px-3 py-1 rounded-pill text-center fw-bold mb-0 flex-grow-1" 
+            style="background-color: #bee0f0; color:  #071949;font-size: 18px;">
+        Current Month
+        </h4>
+  
+      </div>
+    </c-container>
+    <c-container fluid class=" px-1">
+    <c-row class=" d-flex flex-wrap justify-content-center " style="margin-left: 10px;margin-right:10px ;" >
+      <c-col md="12" xl="3">
+        <c-widget-stat-a
+          class="mb-1"
+          [ngStyle]="{'height': '180px','background-color': '#e5e8e8 ','color':'black'}"
+        >
+          <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+            <span style="font-size: 20px; font-weight: bold;">Total Consumption Energy</span>
+            <br><br>
+            <span style="font-size: 30px; color: rgb(39, 3, 243); display: flex; justify-content: left; align-items: center;">
+              39580.6 kWH
+            </span>
+          </ng-template>
+        </c-widget-stat-a>
+      </c-col>
+      
+      <c-col md="12" xl="3">
+        <c-widget-stat-a
+         class="mb-1"
+         
+          [ngStyle]="{'height': '180px','background-color':'#bee0f0'}"
+        >
+            <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces >
+                <span style="font-size: 20px; font-weight: bold;">E-Consumption Pie Chart</span>
+                <br>
+              <div>
+                <c-chart
+                [data]="data"
+                type="pie"
+                [options]="chartOptions1"
+              ></c-chart>
+              </div>
+               
+            </ng-template>
+        
+         
+        </c-widget-stat-a>
+      </c-col>
+      <c-col md="12" xl="3">
+        <c-widget-stat-a
+          class="mb-1"
+         
+          [ngStyle]="{'height': '180px','background-color': '#e5e8e8 ','color':'black'}"
+        >
+
+          <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+          <span style="font-size: 20px; font-weight: bold;">Total Base Cost Predicated </span>
+        
+         <br><br>
+            <span style="font-size: 30px; color: blue; display: flex; justify-content: left; align-items: center;">
+             39580.6 kWH
+              </span>
+          </ng-template>
+         
+         
+        </c-widget-stat-a>
+      </c-col>
+      <c-col md="12" xl="3">
+        <c-widget-stat-a
+        class="mb-1"
+      color="primary"
+        [ngStyle]="{'height': '180px'}"
+      >
+
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+          <span style="font-size: 20px; font-weight: bold;"> Total Base Cost Predicated</span>
+          
+       <br><br>
+          <span style="font-size: 30px; color: white; display: flex; justify-content: left; align-items: center;">
+           39580.6 kWH
+            </span>
+        </ng-template>
+       
+       
+      </c-widget-stat-a>
+      </c-col>
+    </c-row>
+   </c-container>
+  
+   <c-container fluid class="py-1 px-1 ">
+    <div class="d-flex align-items-center w-100">
+      <h4 class=" px-2 py-2 rounded-pill text-center fw-bold mb-0 flex-grow-1 " 
+          style="background-color: #266583; color:  #071949;">
+     
+      </h4>
+
+    </div>
+  </c-container>
+    <c-row>
+      <c-col md="6">
+        <div class="chart-container">
+    
+          <!-- <c-chart class="chart-wrapper" [data]="voltageData" [options]="chartOptions" type="line"></c-chart> -->
+          <c-chart class="line-chart-wrapper" [data]="voltageData" [options]="chartOptions" type="line"></c-chart>
+
+
+        </div>
+      </c-col>
+    
+      <c-col md="6">
+        <div class="chart-container">
+
+          <c-chart class="line-chart-wrapper" [data]="currentData" [options]="chartOptions" type="line"></c-chart>
+
+        </div>
+      </c-col>
+    </c-row>
+
+</div>
+  
+    
+
+    
+    
+    

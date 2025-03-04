@@ -82,7 +82,11 @@ export const routes: Routes = [
       {
         path: 'plant-master-form',
         loadChildren:()=>import('./views/pages/plant-master-form/routes').then((m) => m.routes)
-      }
+      },
+      // {
+      //   path: 'graph',
+      //   loadChildren: () => import('./views/graph/routes').then((m) => m.routes)
+      // },
     ]
   },
   {
@@ -118,6 +122,15 @@ export const routes: Routes = [
     path: 'app-ems-malanpur', // Add this route outside children if it's an independent page
     component: EmsMalanpurComponent,
     data: { title: 'EMS Malanpur' }
+  },
+
+
+  {
+    path: 'graph',
+    loadComponent: () => import('./views/graph/graph.component').then(m => m.graphcompoenent),
+    data: {
+      title: 'Graph Page'
+    }
   },
   { path: '**', redirectTo: 'dashboard' }
 ];
