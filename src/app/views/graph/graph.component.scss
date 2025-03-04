@@ -1,0 +1,68 @@
+.chart-container {
+  height: 250px; /* Set desired height */
+}
+
+.chart-container canvas {
+  height: 250px !important; /* Force override */
+}
+
+.line-chart-wrapper {
+  height: 250px !important;
+}
+
+.line-chart-wrapper canvas {
+  height: 250px !important;
+  max-height: 250px !important;
+}
+
+
+   .page-container {
+    display: flex;
+    flex-direction: column;
+   }
+
+  /* Fixed header */
+  .fixed-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Scrollable content */
+  .scrollable-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  /* Responsive button styling */
+  .btn-custom {
+    background-color: #a1bcce;
+    color: #071949;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* Centered heading */
+  .section-title {
+    background-color: #bee0f0;
+    color: #071949;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* Chart and widget container */
+  
