@@ -50,18 +50,17 @@
   <!-- </c-header> -->
   <!-- <c-container class="overflow-hidden  "> -->
     <c-container fluid class="py-1 px-1">
-      <c-row style="margin-left: 20px; margin-right: 20px;margin-top: 1px;">
+    
+      <c-row style="margin-left: 10px; margin-right: 10px;margin-top: 1px;">
 
-      <c-col gap-5 lg="3" xs="12"  >
+      <c-col  lg="3" xs="12"  >
        <c-widget-stat-f 
           [title]="'14.32 kVAH'"
           value="Energy Consumption"
           class="mb-0"
           padding
           [ngStyle]="{'font-size': '30px','background-color': '#e5e8e8','color':'black'}"
-          
         >
-        
           <ng-template cTemplateId="widgetIconTemplate">
            <svg [cIcon]="icons.cilChartPie" size="xl" width="24" style="color: #071949;"></svg> 
         
@@ -76,7 +75,6 @@
         [title]="'229.77 kWH'"
         value="Energy Apparent"
         class="mb-0"
-       
         padding
         [ngStyle]="{'font-size': '30px','background-color':'#fbe5d6 ','color':'black'}"
       >
