@@ -24,9 +24,16 @@ interface PlantMasterRecord {
   standalone: true,
   imports: [
     CommonModule, ContainerComponent, RowComponent, ColComponent, 
+<<<<<<< HEAD
     HeaderModule, ButtonDirective, IconDirective, GridModule,
     WidgetStatFComponent, TemplateIdDirective, DropdownModule, ProgressModule, SharedModule, 
     WidgetStatBComponent, ProgressComponent, WidgetStatAComponent, ChartjsComponent
+=======
+     HeaderModule, ButtonDirective, IconDirective, GridModule, 
+     TemplateIdDirective, DropdownModule, ProgressModule, SharedModule, 
+     WidgetStatBComponent, ProgressComponent, WidgetStatAComponent, 
+     ChartjsComponent
+>>>>>>> 2ee0815c4acdf360a4c5516496080bf27421803e
   ],
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
