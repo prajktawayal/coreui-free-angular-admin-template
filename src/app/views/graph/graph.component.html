@@ -11,7 +11,7 @@
 <div class="d-flex flex-column align-items-center w-100">
 <!-- Title -->
 <h4 class="px-2 py-2 rounded-pill text-center fw-bold mb-2 w-100 text-white" 
-    style="background-color: #4882a8;">
+    style="background-color: #266583;;">
   Energy Monitoring System
 </h4>
 
@@ -54,8 +54,8 @@
 </c-container>
   <c-container fluid class="py-1 px-1 ">
       <div class="d-flex align-items-center w-100">
-        <h4 class=" px-2 py-2 rounded-pill text-center fw-bold mb-0 flex-grow-1 " 
-            style="background-color: #bee0f0; color:  #071949;font-size: 18px;">
+        <h4 class=" px-2 py-2 rounded-pill text-center fw-bold mb-0 flex-grow-1 border " 
+            style="background-color: #eaf0f3; color:  #071949;font-size: 18px;">
         Daily
         </h4>
   
@@ -78,8 +78,8 @@
            <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg> 
           </ng-template>
         </c-widget-stat-f>
-
       </c-col>
+
       <c-col lg="3" xs="12">
         <c-widget-stat-f
         [title]="'229.77 kWH'"
@@ -99,7 +99,6 @@
         [title]="'12.91 kVARH'"
         value="Energy Reactive"
         class="mb-0"
-       
         padding
         [ngStyle]="{'font-size':'30px','background-color': '#e5e8e8 '}"
         >
@@ -108,6 +107,7 @@
           </ng-template>
         </c-widget-stat-f>
       </c-col>
+
       <c-col lg="3" xs="12">
         <c-widget-stat-f
         [title]="'221.77 kVA'"
@@ -128,13 +128,14 @@
     <!-- </c-container> -->
     <c-container fluid class="py-1 px-1">
       <div class="d-flex align-items-center w-100" >
-        <h4 class=" px-3 py-1 rounded-pill text-center fw-bold mb-0 flex-grow-1" 
-            style="background-color: #bee0f0; color:  #071949;font-size: 18px;">
+        <h4 class=" px-3 py-1 rounded-pill text-center fw-bold mb-0 flex-grow-1 border" 
+            style="background-color: #eaf0f3; color:  #071949;font-size: 18px;">
         Avarge
         </h4>
   
       </div>
     </c-container>
+
     <c-container fluid class="py-1 px-1">
     <c-row  style="margin-left: 10px; margin-right: 10px;margin-top: 2px;">
       <c-col md="12" xl="4">
@@ -142,13 +143,16 @@
           #widgetStatB1inv="cWidgetStatB"
           [title]="'PF'"
           class="mb-1"
-          color="primary"
           inverse
+          [ngStyle]="{'background-color': '#5e78b2'}"
+          
         >
         <span style="font-size: 12px; color: white; display: flex; justify-content: center; align-items: center;">
          0.59
         </span>
-          <c-progress [white]="widgetStatB1inv.inverse" class="my-1"  [value]="value()"  style="height: 15px;" /> 
+          <!-- <c-progress [dark]="widgetStatB1inv.inverse" class="my-1"  [value]="value()"  style="height: 15px; " />  -->
+          <c-progress [color]="'white'" class="my-1" [value]="value()" style="height: 15px;">
+          </c-progress>
           <span style="display: flex; justify-content: space-between; width: 100%;">
             <h6 style="font-size: 12px; color: white;">1</h6>
             <h6 style="font-size: 12px; color: white;">2</h6>
@@ -159,8 +163,8 @@
   <c-widget-stat-b
     #widgetStatB1inv="cWidgetStatB"
     [title]="'Voltage'"
-    color="warning"
     inverse
+    [ngStyle]="{'background-color': '#5e78b2','color':'black'}"
   >
   <span style="font-size: 14px; color: white; display: flex; justify-content: center; align-items: center;">
   410.0SV
@@ -176,9 +180,9 @@
   <c-widget-stat-b
     #widgetStatB1inv="cWidgetStatB"
     [title]="'Current'"
-    color="primary"
-    inverse
 
+    inverse
+    [ngStyle]="{'background-color': '#5e78b2','color':'black'}"
   >
   <span style="font-size: 14px; color: white; display: flex; justify-content: center; align-items: center;">
    78.63 Amp
@@ -191,11 +195,12 @@
   </c-widget-stat-b>
      </c-col>
     </c-row>
+
   </c-container>
     <c-container fluid class="py-2 px-1">
       <div class="d-flex align-items-center w-100 ">
-        <h4 class=" px-3 py-1 rounded-pill text-center fw-bold mb-0 flex-grow-1" 
-            style="background-color: #bee0f0; color:  #071949;font-size: 18px;">
+        <h4 class=" px-3 py-1 rounded-pill text-center fw-bold mb-0 flex-grow-1 border" 
+            style="background-color: #eaf0f3; color:  #071949;font-size: 18px;">
         Current Month
         </h4>
   
@@ -206,7 +211,8 @@
       <c-col md="12" xl="3">
         <c-widget-stat-a
           class="mb-1"
-          [ngStyle]="{'height': '180px','background-color': '#e5e8e8 ','color':'black'}"
+   
+          [ngStyle]="{'height': '180px','background-color':'#bee0f0','color':'black'}"
         >
           <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
             <span style="font-size: 20px; font-weight: bold;">Total Consumption Energy</span>
@@ -221,8 +227,8 @@
       <c-col md="12" xl="3">
         <c-widget-stat-a
          class="mb-1"
-         
-          [ngStyle]="{'height': '180px','background-color':'#bee0f0'}"
+   
+          [ngStyle]="{'height': '180px','background-color': '#e5e8e8 ','color':'black'}"
         >
             <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces >
                 <span style="font-size: 20px; font-weight: bold;">E-Consumption Pie Chart</span>
@@ -243,8 +249,8 @@
       <c-col md="12" xl="3">
         <c-widget-stat-a
           class="mb-1"
-         
-          [ngStyle]="{'height': '180px','background-color': '#e5e8e8 ','color':'black'}"
+          [ngStyle]="{'height': '180px','background-color':'#bee0f0','color':'black'}"
+        
         >
 
           <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
@@ -262,15 +268,15 @@
       <c-col md="12" xl="3">
         <c-widget-stat-a
         class="mb-1"
-      color="primary"
-        [ngStyle]="{'height': '180px'}"
+  
+        [ngStyle]="{'height': '180px','background-color': '#e5e8e8 ','color':'black'}"
       >
 
         <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
           <span style="font-size: 20px; font-weight: bold;"> Total Base Cost Predicated</span>
           
        <br><br>
-          <span style="font-size: 30px; color: white; display: flex; justify-content: left; align-items: center;">
+          <span style="font-size: 30px; color: rgb(54, 21, 240); display: flex; justify-content: left; align-items: center;">
            39580.6 kWH
             </span>
         </ng-template>
@@ -283,8 +289,8 @@
   
    <c-container fluid class="py-1 px-1 ">
     <div class="d-flex align-items-center w-100">
-      <h4 class=" px-2 py-2 rounded-pill text-center fw-bold mb-0 flex-grow-1 " 
-          style="background-color: #266583; color:  #071949;">
+      <h4 class=" px-2 py-2 rounded-pill text-center fw-bold mb-0 flex-grow-1 border" 
+          style="background-color:#eaf0f3; color:  #071949;">
      
       </h4>
 
