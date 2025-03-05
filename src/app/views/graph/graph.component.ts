@@ -16,11 +16,11 @@ import { ChartData } from 'chart.js';
   selector: 'app-graph',
   standalone: true,
   imports: [
-    CommonModule, ContainerComponent, RowComponent, ColComponent, CardComponent, CardBodyComponent, 
-    CardHeaderComponent, HeaderModule, ButtonDirective, IconDirective, GridModule, 
-    WidgetStatFComponent, TemplateIdDirective, DropdownModule, ProgressModule, SharedModule, 
-    WidgetStatCComponent, WidgetStatBComponent, ProgressComponent, WidgetStatAComponent, 
-    ThemeDirective, ChartjsComponent
+    CommonModule, ContainerComponent, RowComponent, ColComponent, 
+     HeaderModule, ButtonDirective, IconDirective, GridModule, 
+     TemplateIdDirective, DropdownModule, ProgressModule, SharedModule, 
+     WidgetStatBComponent, ProgressComponent, WidgetStatAComponent, 
+     ChartjsComponent
   ],
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss']
