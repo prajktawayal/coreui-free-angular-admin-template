@@ -221,6 +221,11 @@ export const navItems: INavData[] = [
         icon:'nav-icon-bullet'
       },
       
+      {
+        name:'EnergyMasterForm',
+        url:'/energy-meter',
+        icon:'nav-icon-bullet'
+      },
      
      
       {

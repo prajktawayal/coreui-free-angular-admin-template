@@ -11,17 +11,17 @@ export class FactoryService {
   constructor(private http: HttpClient) {}  
 
   // Save a new Factory Master record
-  SaveFactoryMaster(master: { factoryid: string; factoryname: string; address: string; contact: string }): Observable<{ message: string }> {
+  SaveFactoryMaster(master: { FactoryId: string; FactoryName: string; Address: string; Contact: string }): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.baseserverurl}FactoryMaster/FactoryMaster`, master);
   }
 
   // Get all Factory Master records
   getFactoryMaster(): Observable<any> {
-    return this.http.get<any>(`${this.baseserverurl}FactoryMaster/GetAllFactoryMaster`);
+    return this.http.get<any>(`${this.baseserverurl}FactoryMaster/AllFactoryMaster`);
   }
 
   // Update an existing Factory Master record
-  updateFactoryMaster(payload: { factoryid: string; factoryname: string; address: string; contact: string }): Observable<{ message: string }> {
+  updateFactoryMaster(payload: { FactoryId: string; FactoryName: string; Address: string; Contact: string }): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.baseserverurl}FactoryMaster/UpdateFactoryMaster`, payload);
   }
 

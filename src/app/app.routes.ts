@@ -64,12 +64,6 @@ export const routes: Routes = [
         path: 'line-master',
         loadChildren: () => import('./views/pages/line-master/routes').then((m) => m.routes)
       },
-      {
-
-        path: 'app-ems-malanpur',  // Add this route inside children if it should be under DefaultLayoutComponent
-        component: EmsMalanpurComponent,
-        data: { title: 'EMS Malanpur' }
-      },
      
      {
         path: 'plant-master',
@@ -79,9 +73,17 @@ export const routes: Routes = [
         path: 'factory-master',
         loadChildren:()=>import('./views/pages/factory-master/routes').then((m) => m.routes)
       },
+     
       {
         path: 'plant-master-form',
         loadChildren:()=>import('./views/pages/plant-master-form/routes').then((m) => m.routes)
+      },
+
+      {
+
+        path: 'app-ems-malanpur',  // Add this route inside children if it should be under DefaultLayoutComponent
+        component: EmsMalanpurComponent,
+        data: { title: 'EMS Malanpur' }
       },
       // {
       //   path: 'graph',
@@ -132,5 +134,14 @@ export const routes: Routes = [
       title: 'Graph Page'
     }
   },
+  {
+    path: 'energy-meter',
+    loadComponent: () => import('./views/energy-meter/energy-meter.component').then(m => m.EnergyMeterComponent),
+    data: {
+      title: 'Graph Page'
+    }
+  },
+ 
+  
   { path: '**', redirectTo: 'dashboard' }
 ];

@@ -15,10 +15,10 @@ import {
 } from '@coreui/angular';
 
 interface FactoryMasterRecord {
-  factoryid: string;
-  factoryname: string;
-  address: string;
-  contact: string;
+  FactoryId: string;
+  FactoryName: string;
+  Address: string;
+  Contact: string;
   isEditing?: boolean;
 
 }
@@ -70,10 +70,10 @@ export class factoryMasterComponent implements OnInit {
       ngOnInit(): void {
         console.log("Initializing component..."); // Debugging log
         this.factoryForm = this.fb.group({
-          factoryid: ['', Validators.required],
-          factoryname: ['', Validators.required],
-          address: ['', Validators.required],
-          contact: ['', Validators.required],
+          FactoryId: ['', Validators.required],
+          FactoryName: ['', Validators.required],
+          Address: ['', Validators.required],
+          Contact: ['', Validators.required],
         });
       
         this.getData(); // Ensure this is being called
@@ -97,10 +97,10 @@ export class factoryMasterComponent implements OnInit {
     }
 
     const FactoryMasterData = {
-      factoryid: this.factoryForm.value.factoryid?.trim() ? String(this.factoryForm.value.factoryid) : '',
-      factoryname: this.factoryForm.value.factoryname?.trim() ? String(this.factoryForm.value.factoryname) : '',
-      address: this.factoryForm.value.address?.trim() ? String(this.factoryForm.value.address) : '',
-      contact: this.factoryForm.value.contact?.trim() ? String(this.factoryForm.value.contact) : '',
+      FactoryId: this.factoryForm.value.FactoryId?.trim() ? String(this.factoryForm.value.FactoryId) : '',
+      FactoryName: this.factoryForm.value.FactoryName?.trim() ? String(this.factoryForm.value.FactoryName) : '',
+      Address: this.factoryForm.value.Address?.trim() ? String(this.factoryForm.value.Address) : '',
+      Contact: this.factoryForm.value.Contact?.trim() ? String(this.factoryForm.value.Contact) : '',
        };
 
 
@@ -148,10 +148,10 @@ getData() {
       if (res && res.success && Array.isArray(res.data)) {
         // Map the API response to match the expected structure
         this.FactoryMasterList = res.data.map(record => ({
-          factoryid: record.factoryid,        // Fix camelCase to PascalCase
-          factoryname: record.factoryname,
-          address: record.address,
-          contact: record.contact,
+          FactoryId: record.factoryId,        // Fix camelCase to PascalCase
+          FactoryName: record.factoryName,
+          Address: record.address,
+          Contact: record.contact,
         
           isEditing: false
         }));
@@ -177,10 +177,10 @@ editRow(index: number) {
 saveRow(index: number) {
   const updatedRecord = this.FactoryMasterList[index];
   const payload = {
-    factoryid: updatedRecord.factoryid,
-    factoryname: updatedRecord.factoryname,
-    address: updatedRecord.address,
-    contact: updatedRecord.contact,
+    FactoryId: updatedRecord.FactoryId,
+    FactoryName: updatedRecord.FactoryName,
+    Address: updatedRecord.Address,
+    Contact: updatedRecord.Contact,
    
   };
 
@@ -211,16 +211,16 @@ saveRow(index: number) {
 
 DeleteRow(index: number) {
   const deleteRecord = this.FactoryMasterList[index];
-  if (!deleteRecord || !deleteRecord.factoryid) {
+  if (!deleteRecord || !deleteRecord.FactoryId) {
     console.warn('Invalid record:', deleteRecord);
     return;
   }
-  console.log('Calling deleteLineMaster with:', deleteRecord.factoryid);
+  console.log('Calling deleteLineMaster with:', deleteRecord.FactoryId);
   const confirmDelete = window.confirm("Do you really want to delete this data?");
   if (!confirmDelete) {
     return; // Exit if the user cancels
 }
-  this.FactoryService.deleteFactoryMaster(deleteRecord.factoryid).subscribe({
+  this.FactoryService.deleteFactoryMaster(deleteRecord.FactoryId).subscribe({
     next: (response) => {
       console.log('Record deleted successfully:', response);
       this.FactoryMasterList.splice(index, 1);
@@ -232,9 +232,9 @@ DeleteRow(index: number) {
   });
 }
 
-get factoryid() { return this.factoryForm.get('factoryid'); }
-  get factoryname() { return this.factoryForm.get('factoryname'); }
-  get address() { return this.factoryForm.get('address'); }
-  get contact() { return this.factoryForm.get('contact'); }
+get FactoryId() { return this.factoryForm.get('FactoryId'); }
+  get FactoryName() { return this.factoryForm.get('FactoryName'); }
+  get Address() { return this.factoryForm.get('Address'); }
+  get Contact() { return this.factoryForm.get('Contact'); }
 }
   

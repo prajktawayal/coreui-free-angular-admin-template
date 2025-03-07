@@ -7,14 +7,15 @@ import { Observable } from 'rxjs';
 })
 
 export class LineService {
-  //private baseserverurl = 'http://192.168.2.172:8001/api/'; // ✅ Adjust base URL as needed
+
   private baseserverurl = 'http://192.168.2.172:8001/api/';
- //private baseserverurl = 'https://localhost:44303/api/';
+ //private baseserverurl = ' http://localhost:44303/api/';
+
   constructor(private http: HttpClient) {}  
 
 
   
-  SaveLineMaster(master: { LineId: string; NoOfLines: string; PlantId: string; Factory: string; LineName: string }) {
+  SaveLineMaster(master: { LineId: string; NoOfLines: string; PlantId: string; FactoryId: string; LineName: string }) {
     return this.http.post<{ message: string }>(`${this.baseserverurl}LineMaster/LineMaster`, master);
   }
 
@@ -24,7 +25,7 @@ export class LineService {
   }
 
 
-  updateLineMaster(payload: { LineId: string; NoOfLines: string; PlantId: string; Factory: string; LineName: string }) {
+  updateLineMaster(payload: { LineId: string; NoOfLines: string; PlantId: string; FactoryId: string; LineName: string }) {
     return this.http.post<{ message: string }>(`${this.baseserverurl}LineMaster/UpdateLineMaster`, payload);
   }
 

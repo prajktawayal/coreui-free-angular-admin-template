@@ -100,7 +100,7 @@ export class LineMasterComponent implements OnInit {
       LineId: this.lineForm.value.LineId?.trim() ? String(this.lineForm.value.LineId) : '',
       NoOfLines: this.lineForm.value.NoOfLines?.trim() ? String(this.lineForm.value.NoOfLines) : '',
       PlantId: this.lineForm.value.PlantId?.trim() ? String(this.lineForm.value.PlantId) : '',
-      Factory: this.lineForm.value.Factory?.trim() ? String(this.lineForm.value.Factory) : '',
+      FactoryId: this.lineForm.value.Factory?.trim() ? String(this.lineForm.value.Factory) : '',
       LineName: this.lineForm.value.LineName?.trim() ? String(this.lineForm.value.LineName) : ''
     };
 
@@ -151,7 +151,7 @@ export class LineMasterComponent implements OnInit {
             LineId: record.lineId,        // Fix camelCase to PascalCase
             NoOfLines: record.noOfLines,
             PlantId: record.plantId,
-            Factory: record.factory,
+            Factory: record.factoryId,
             LineName: record.lineName,
             isEditing: false
           }));
@@ -182,7 +182,7 @@ export class LineMasterComponent implements OnInit {
       LineId: updatedRecord.LineId,
       NoOfLines: updatedRecord.NoOfLines,
       PlantId: updatedRecord.PlantId,
-      Factory: updatedRecord.Factory,
+      FactoryId: updatedRecord.Factory,
       LineName: updatedRecord.LineName
     };
   
@@ -209,9 +209,6 @@ export class LineMasterComponent implements OnInit {
     });
   }
  
-
-    
-
   // Delete a row
   DeleteRow(index: number) {
     const deleteRecord = this.lineMasterList[index];

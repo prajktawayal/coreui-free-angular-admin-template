@@ -32,10 +32,10 @@
                 <div class="form-floating mb-3">
                     <input 
                     type="text" class="form-control"
-                     id="factoryid" formControlName="factoryid" placeholder="Factory ID" 
+                     id="FactoryId" formControlName="FactoryId" placeholder="Factory ID" 
                      />
-                    <label for="factoryid">Factory ID</label>
-                    <div *ngIf="factoryForm.controls['factoryid']?.invalid && factoryForm.controls['factoryid']?.touched"
+                    <label for="FactoryId">Factory ID</label>
+                    <div *ngIf="factoryForm.controls['FactoryId']?.invalid && factoryForm.controls['FactoryId']?.touched"
                         class="text-danger mt-1">
                         Factory ID is required
                     </div>
@@ -45,10 +45,10 @@
                   <div class="form-floating mb-3">
                     <input 
                     type="text" class="form-control"
-                     id="factoryname" formControlName="factoryname" placeholder="Factory Name" 
+                     id="FactoryName" formControlName="FactoryName" placeholder="Factory Name" 
                      />
-                    <label for="factoryname">Factory Name</label>
-                    <div *ngIf="factoryForm.controls['factoryname']?.invalid && factoryForm.controls['factoryname']?.touched"
+                    <label for="FactoryName">Factory Name</label>
+                    <div *ngIf="factoryForm.controls['FactoryName']?.invalid && factoryForm.controls['FactoryName']?.touched"
                         class="text-danger mt-1">
                         Factory Name is required
                     </div>
@@ -58,23 +58,23 @@
                  <div class="form-floating mb-3">
                     <input 
                     type="text" class="form-control"
-                     id="address" formControlName="address" placeholder="Factory Address" 
+                     id="Address" formControlName="Address" placeholder="Factory Address" 
                      />
-                    <label for="address">Factory Address</label>
-                    <div *ngIf="factoryForm.controls['address']?.invalid && factoryForm.controls['address']?.touched"
+                    <label for="Address">Factory Address</label>
+                    <div *ngIf="factoryForm.controls['Address']?.invalid && factoryForm.controls['Address']?.touched"
                         class="text-danger mt-1">
                         Factory Address is required
                     </div>
                 </div>
 
-                 <!-- Factory contact  -->
+                 <!-- Factory Contact  -->
                  <div class="form-floating mb-3">
                     <input 
                     type="text" class="form-control"
-                     id="contact" formControlName="contact" placeholder="Factory Contact " 
+                     id="Contact" formControlName="Contact" placeholder="Factory Contact " 
                      />
-                    <label for="contact">Factory Contact</label>
-                    <div *ngIf="factoryForm.controls['contact']?.invalid && factoryForm.controls['contact']?.touched"
+                    <label for="Contact">Factory Contact</label>
+                    <div *ngIf="factoryForm.controls['Contact']?.invalid && factoryForm.controls['Contact']?.touched"
                         class="text-danger mt-1">
                         Factory Contact is required
                     </div>
@@ -116,34 +116,34 @@
 
             <tbody class="text-center">
                 <tr *ngFor="let item of FactoryMasterList; let i = index">
-                  <td class="fw-bold">{{ item.factoryid }}</td>
+                  <td class="fw-bold">{{ item.FactoryId }}</td>
 
 
 
                   <td>
-                    <ng-container *ngIf="!item.isEditing; else editfactoryname">
-                      {{ item.factoryname }}
+                    <ng-container *ngIf="!item.isEditing; else editFactoryName">
+                      {{ item.FactoryName }}
                     </ng-container>
-                    <ng-template #editfactoryname>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.factoryname">
+                    <ng-template #editFactoryName>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.FactoryName">
                     </ng-template>
                   </td>
 
                   <td>
-                    <ng-container *ngIf="!item.isEditing; else editfactoryaddress">
-                      {{ item.address }}
+                    <ng-container *ngIf="!item.isEditing; else editfactoryAddress">
+                      {{ item.Address }}
                     </ng-container>
-                    <ng-template #editfactoryaddress>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.address">
+                    <ng-template #editfactoryAddress>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.Address">
                     </ng-template>
                   </td>
 
                   <td>
-                    <ng-container *ngIf="!item.isEditing; else editfactorycontact">
-                      {{ item.contact }}
+                    <ng-container *ngIf="!item.isEditing; else editfactoryContact">
+                      {{ item.Contact }}
                     </ng-container>
-                    <ng-template #editfactorycontact>
-                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.contact">
+                    <ng-template #editfactoryContact>
+                      <input type="text" class="form-control form-control-sm" [(ngModel)]="item.Contact">
                     </ng-template>
                   </td>
                      
