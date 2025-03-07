@@ -129,7 +129,7 @@ export const routes: Routes = [
 
   {
     path: 'graph',
-    loadComponent: () => import('./views/graph/graph.component').then(m => m.graphcompoenent),
+    loadComponent: () => import('./views/graph/graph.component').then(m => m.graphComponent),
     data: {
       title: 'Graph Page'
     }
